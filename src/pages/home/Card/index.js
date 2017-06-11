@@ -19,11 +19,11 @@ export default ({title, subTitle, body}) => {
         <ul>
           <li>
             <span className="service-label">HTTP</span>
-            <span className="service-state color-green">running</span>
+            <span className="service-state color-green text-capitalize">running</span>
           </li>
           <li>
             <span className="service-label">HTTPS</span>
-            <span className="service-state color-blue">stoped</span>
+            <span className="service-state color-blue text-capitalize">stoped</span>
           </li>
           <li>
             <span className="service-label">Service Port</span>

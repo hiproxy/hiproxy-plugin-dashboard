@@ -11534,6 +11534,12 @@ var Home = exports.Home = function (_React$Component) {
           _react2.default.createElement(_Header2.default, null),
           _react2.default.createElement(
             'div',
+            { className: 'toast toast-success ml-10 mr-10 mt-10', style: { width: 'auto' } },
+            _react2.default.createElement('button', { className: 'btn btn-clear float-right' }),
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+          ),
+          _react2.default.createElement(
+            'div',
             { className: 'main' },
             _react2.default.createElement(
               'div',
@@ -11709,7 +11715,7 @@ exports.default = function (_ref) {
           ),
           React.createElement(
             "span",
-            { className: "service-state color-green" },
+            { className: "service-state color-green text-capitalize" },
             "running"
           )
         ),
@@ -11723,7 +11729,7 @@ exports.default = function (_ref) {
           ),
           React.createElement(
             "span",
-            { className: "service-state color-blue" },
+            { className: "service-state color-blue text-capitalize" },
             "stoped"
           )
         ),
@@ -11811,14 +11817,9 @@ exports.default = function (props) {
       "section",
       { className: "navbar-section" },
       React.createElement(
-        "div",
-        { className: "input-group input-inline" },
-        React.createElement("input", { className: "form-input", type: "text", placeholder: "search" }),
-        React.createElement(
-          "button",
-          { className: "btn btn-primary input-group-btn" },
-          "Search"
-        )
+        "figure",
+        { className: "avatar badge", "data-badge": "8", "data-initial": "YZ" },
+        React.createElement("img", { src: "https://picturepan2.github.io/spectre/img/avatar-2.png", alt: "YZ" })
       )
     )
   );
@@ -12134,7 +12135,7 @@ exports = module.exports = __webpack_require__(34)(undefined);
 
 
 // module
-exports.push([module.i, ".card {\n  width: 320px;\n  height: 190px;\n  padding: 15px;\n  border-radius: 5px;\n  background: #F8F9FA;\n}\n.card .card-header {\n  padding: 0;\n}\n.card .card-header .card-title {\n  margin: 0;\n  font-weight: 400;\n}\n.card .card-body {\n  padding: 0;\n  margin-top: 20px;\n}\n.card .card-body ul {\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n}\n.card .card-body li {\n  list-style: none;\n  display: flex;\n  flex-direction: 1;\n  width: 50%;\n  padding-right: 10px;\n  margin-top: 5px;\n  margin-bottom: 5px;\n}\n.card .card-body li:nth-child(2n) {\n  padding-right: 0;\n}\n.card .card-body .service-label {\n  color: #141414;\n  margin-right: 10px;\n}\n.card .card-body .service-state {\n  flex: 1;\n  text-align: right;\n  font-weight: 600;\n}\n.card .card-footer {\n  padding: 0;\n  margin-top: 20px;\n}\n.card .card-footer .btn {\n  margin-right: 10px;\n  background: #0092FF;\n  border-color: #0092FF;\n}\n.card .card-footer .btn:last-child {\n  margin-right: 0;\n  background: #00D57C;\n  border-color: #00D57C;\n}\n", ""]);
+exports.push([module.i, ".card {\n  width: 320px;\n  height: 190px;\n  padding: 15px;\n  border-radius: 5px;\n  background: #F8F9FA;\n}\n.card .card-header {\n  padding: 0;\n}\n.card .card-header .card-title {\n  margin: 0;\n  padding-bottom: 10px;\n  font-weight: 400;\n  border-bottom: 1px solid #E7E7E7;\n  text-transform: capitalize;\n}\n.card .card-body {\n  padding: 0;\n  margin-top: 10px;\n}\n.card .card-body ul {\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n}\n.card .card-body li {\n  list-style: none;\n  display: flex;\n  flex-direction: 1;\n  width: 50%;\n  padding-right: 10px;\n  margin-top: 5px;\n  margin-bottom: 5px;\n}\n.card .card-body li:nth-child(2n) {\n  padding-right: 0;\n}\n.card .card-body .service-label {\n  color: #141414;\n  margin-right: 10px;\n}\n.card .card-body .service-state {\n  flex: 1;\n  text-align: right;\n  font-weight: 600;\n}\n.card .card-footer {\n  padding: 0;\n  margin-top: 20px;\n}\n.card .card-footer .btn {\n  margin-right: 10px;\n  background: #0092FF;\n  border-color: #0092FF;\n}\n.card .card-footer .btn:last-child {\n  margin-right: 0;\n  background: rgba(50, 182, 67, 0.9);\n  border-color: #32b643;\n}\n", ""]);
 
 // exports
 
@@ -12148,7 +12149,7 @@ exports = module.exports = __webpack_require__(34)(undefined);
 
 
 // module
-exports.push([module.i, ".table th {\n  border-bottom: 1px solid #E7E7E7;\n  text-transform: capitalize;\n}\n.table tr {\n  height: 70px;\n}\n.table td {\n  font-size: 16px;\n}\n.table td:first-child {\n  color: #1893DF;\n}\n.table td .btn {\n  margin-right: 10px;\n  border-color: #88C8ED;\n  color: #4F4F4F;\n  border-radius: 19px;\n  padding-left: 20px;\n  padding-right: 20px;\n}\n.table td .btn:last-child {\n  margin-right: 0;\n}\n", ""]);
+exports.push([module.i, ".table th {\n  border-bottom: 1px solid #E7E7E7;\n  text-transform: capitalize;\n  font-size: 16px;\n  font-weight: 400;\n}\n.table tr {\n  height: 70px;\n}\n.table td {\n  font-size: 16px;\n}\n.table td:first-child {\n  color: #1893DF;\n}\n.table td .btn {\n  margin-right: 10px;\n  border-color: #88C8ED;\n  color: #4F4F4F;\n  border-radius: 19px;\n  padding-left: 20px;\n  padding-right: 20px;\n}\n.table td .btn:last-child {\n  margin-right: 0;\n}\n", ""]);
 
 // exports
 
@@ -12162,7 +12163,7 @@ exports = module.exports = __webpack_require__(34)(undefined);
 
 
 // module
-exports.push([module.i, ".home-page {\n  padding: 0;\n  flex-direction: row;\n  display: flex;\n  flex: 1;\n}\n.header-title {\n  font-size: 26px;\n}\nh1 {\n  font-size: 26px;\n  padding: 0;\n  margin: 0;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  display: flex;\n}\n.side-bar {\n  width: 225px;\n  background-color: #32393E;\n}\n.side-bar .logo {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  height: 60px;\n}\n.side-bar .logo img {\n  width: 60px;\n  height: 60px;\n}\n.side-bar .logo h1 {\n  font-weight: 300;\n  font-size: 25px;\n  margin: 0 10px;\n  color: white;\n}\n.menu {\n  margin: 0;\n  padding: 0;\n  background-color: transparent;\n}\n.menu .menu-item {\n  list-style: none;\n  padding: 0.5rem 1rem;\n}\n.menu .menu-item a {\n  color: #B3B4B8;\n}\n.cards {\n  display: flex;\n  flex-direction: row;\n}\n.body {\n  padding: 0;\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n.main {\n  flex: 1;\n  padding-left: 10px;\n  overflow: scroll;\n}\n", ""]);
+exports.push([module.i, ".home-page {\n  padding: 0;\n  flex-direction: row;\n  display: flex;\n  flex: 1;\n}\n.header-title {\n  font-size: 26px;\n}\nh1 {\n  font-size: 26px;\n  padding: 0;\n  margin: 0;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  display: flex;\n}\n.side-bar {\n  width: 225px;\n  background-color: #32393E;\n}\n.side-bar .logo {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  padding: 15px 0 0 0;\n}\n.side-bar .logo img {\n  width: 60px;\n  height: 60px;\n}\n.side-bar .logo h1 {\n  font-weight: 300;\n  font-size: 25px;\n  margin: 0 10px;\n  color: white;\n}\n.menu {\n  margin: 0;\n  padding: 0;\n  background-color: transparent;\n}\n.menu .menu-item {\n  list-style: none;\n  padding: 0.5rem 1rem;\n}\n.menu .menu-item a {\n  color: #B3B4B8;\n}\n.menu .menu-item .icon {\n  margin-right: 10px;\n}\n.cards {\n  display: flex;\n  flex-direction: row;\n}\n.body {\n  padding: 0;\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n.main {\n  flex: 1;\n  padding-left: 10px;\n  overflow: scroll;\n}\n", ""]);
 
 // exports
 

@@ -48,6 +48,10 @@ export class Home extends React.Component {
         </div>
         <div className="body">
           <Header />
+          <div className="toast toast-success ml-10 mr-10 mt-10" style={{width: 'auto'}}>
+            <button className="btn btn-clear float-right"></button>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </div>
           <div className="main">
             <div className="cards mt-10">
               <Card />
