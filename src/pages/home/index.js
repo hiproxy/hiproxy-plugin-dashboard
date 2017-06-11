@@ -18,6 +18,10 @@ import {doClick} from './action';
 
 import './styles.less';
 
+import Menu from './Menu';
+import Card from './Card';
+import Header from './Header';
+
 export class Home extends React.Component {
   constructor (props) {
     super(props);
@@ -34,48 +38,18 @@ export class Home extends React.Component {
           <div className="logo">
             <img src="./source/logo-light.svg" />
           </div>
-          <ul className="menu">
-            <li className="menu-item">
-              <a href="#">
-                <i className="icon icon-link"></i> Slack
-              </a>
-            </li>
-            <li className="menu-item">
-              <a href="#">
-                <i className="icon icon-photo"></i> HiProxy
-              </a>
-            </li>
-            <li className="menu-item">
-              <a href="#">
-                <i className="icon icon-emoji"></i> Nginx
-              </a>
-            </li>
-            <li className="menu-item">
-              <div className="menu-badge">
-                <label className="label label-primary">2</label>
-              </div>
-              <a href="#">
-                <i className="icon icon-message"></i> Settings
-              </a>
-            </li>
-          </ul>
+          <Menu />
         </div>
-        <div className="column col-10">
-          <header className="navbar">
-            <section className="navbar-section">
-              <a href="#" className="navbar-brand mr-10">hiproxy</a>
-            </section>
-            <section className="navbar-section">
-              <div className="input-group input-inline">
-                <input className="form-input" type="text" placeholder="search" />
-                <button className="btn btn-primary input-group-btn">Search</button>
-              </div>
-            </section>
-          </header>
+        <div className="column col-10 body">
+          <Header />
           <div className="main">
-            <h1 style={{fontWeight: 300}}>Welcome to Hiproxy Dashboard</h1>
             Counter: <h4>{result}</h4>
             <button className="btn btn-primary" onClick={this.onClick.bind(this)}>primary button</button>
+            <div className="cards mt-10">
+              <Card />
+              <Card />
+              <Card />
+            </div>
           </div>
         </div>
       </div>

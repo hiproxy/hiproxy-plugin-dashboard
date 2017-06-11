@@ -11006,6 +11006,18 @@ var _action = __webpack_require__(55);
 
 __webpack_require__(225);
 
+var _Menu = __webpack_require__(232);
+
+var _Menu2 = _interopRequireDefault(_Menu);
+
+var _Card = __webpack_require__(234);
+
+var _Card2 = _interopRequireDefault(_Card);
+
+var _Header = __webpack_require__(233);
+
+var _Header2 = _interopRequireDefault(_Header);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -11053,98 +11065,15 @@ var Home = exports.Home = function (_React$Component) {
             { className: 'logo' },
             _react2.default.createElement('img', { src: './source/logo-light.svg' })
           ),
-          _react2.default.createElement(
-            'ul',
-            { className: 'menu' },
-            _react2.default.createElement(
-              'li',
-              { className: 'menu-item' },
-              _react2.default.createElement(
-                'a',
-                { href: '#' },
-                _react2.default.createElement('i', { className: 'icon icon-link' }),
-                ' Slack'
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              { className: 'menu-item' },
-              _react2.default.createElement(
-                'a',
-                { href: '#' },
-                _react2.default.createElement('i', { className: 'icon icon-photo' }),
-                ' HiProxy'
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              { className: 'menu-item' },
-              _react2.default.createElement(
-                'a',
-                { href: '#' },
-                _react2.default.createElement('i', { className: 'icon icon-emoji' }),
-                ' Nginx'
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              { className: 'menu-item' },
-              _react2.default.createElement(
-                'div',
-                { className: 'menu-badge' },
-                _react2.default.createElement(
-                  'label',
-                  { className: 'label label-primary' },
-                  '2'
-                )
-              ),
-              _react2.default.createElement(
-                'a',
-                { href: '#' },
-                _react2.default.createElement('i', { className: 'icon icon-message' }),
-                ' Settings'
-              )
-            )
-          )
+          _react2.default.createElement(_Menu2.default, null)
         ),
         _react2.default.createElement(
           'div',
-          { className: 'column col-10' },
-          _react2.default.createElement(
-            'header',
-            { className: 'navbar' },
-            _react2.default.createElement(
-              'section',
-              { className: 'navbar-section' },
-              _react2.default.createElement(
-                'a',
-                { href: '#', className: 'navbar-brand mr-10' },
-                'hiproxy'
-              )
-            ),
-            _react2.default.createElement(
-              'section',
-              { className: 'navbar-section' },
-              _react2.default.createElement(
-                'div',
-                { className: 'input-group input-inline' },
-                _react2.default.createElement('input', { className: 'form-input', type: 'text', placeholder: 'search' }),
-                _react2.default.createElement(
-                  'button',
-                  { className: 'btn btn-primary input-group-btn' },
-                  'Search'
-                )
-              )
-            )
-          ),
+          { className: 'column col-10 body' },
+          _react2.default.createElement(_Header2.default, null),
           _react2.default.createElement(
             'div',
             { className: 'main' },
-            _react2.default.createElement(
-              'h1',
-              { style: { fontWeight: 300 } },
-              'Welcome to Hiproxy Dashboard'
-            ),
             'Counter: ',
             _react2.default.createElement(
               'h4',
@@ -11155,6 +11084,13 @@ var Home = exports.Home = function (_React$Component) {
               'button',
               { className: 'btn btn-primary', onClick: this.onClick.bind(this) },
               'primary button'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'cards mt-10' },
+              _react2.default.createElement(_Card2.default, null),
+              _react2.default.createElement(_Card2.default, null),
+              _react2.default.createElement(_Card2.default, null)
             )
           )
         )
@@ -11358,7 +11294,7 @@ exports = module.exports = __webpack_require__(104)(undefined);
 
 
 // module
-exports.push([module.i, ".container {\n  padding: 0;\n}\n.side-bar {\n  width: 225px;\n  background-color: #171E2D;\n}\n.side-bar .logo {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  height: 60px;\n}\n.side-bar .logo img {\n  width: 60px;\n  height: 60px;\n}\n.side-bar .logo h1 {\n  font-weight: 300;\n  font-size: 25px;\n  margin: 0 10px;\n  color: white;\n}\n.menu {\n  margin: 0;\n  padding: 0;\n  background-color: transparent;\n}\n.menu .menu-item {\n  list-style: none;\n}\n.main {\n  flex: 1;\n  padding-left: 10px;\n}\n", ""]);
+exports.push([module.i, ".container {\n  padding: 0;\n  background: #EDF2F6;\n}\n.header-title {\n  font-size: 26px;\n}\nh1 {\n  font-size: 26px;\n  padding: 0;\n  margin: 0;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  display: flex;\n}\n.side-bar {\n  width: 225px;\n  background-color: #171E2D;\n}\n.side-bar .logo {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  height: 60px;\n}\n.side-bar .logo img {\n  width: 60px;\n  height: 60px;\n}\n.side-bar .logo h1 {\n  font-weight: 300;\n  font-size: 25px;\n  margin: 0 10px;\n  color: white;\n}\n.navbar {\n  background: white;\n  padding: 10px 0;\n}\n.menu {\n  margin: 0;\n  padding: 0;\n  background-color: transparent;\n}\n.menu .menu-item {\n  list-style: none;\n}\n.cards {\n  display: flex;\n  flex-direction: row;\n}\n.card {\n  width: 320px;\n  height: 195px;\n}\n.body {\n  padding: 0;\n}\n.main {\n  flex: 1;\n  padding-left: 10px;\n}\n", ""]);
 
 // exports
 
@@ -25129,6 +25065,150 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (props) {
+  return React.createElement(
+    "ul",
+    { className: "menu" },
+    React.createElement(
+      "li",
+      { className: "menu-item" },
+      React.createElement(
+        "a",
+        { href: "#" },
+        React.createElement("i", { className: "icon icon-link" }),
+        " Slack"
+      )
+    ),
+    React.createElement(
+      "li",
+      { className: "menu-item" },
+      React.createElement(
+        "a",
+        { href: "#" },
+        React.createElement("i", { className: "icon icon-photo" }),
+        " HiProxy"
+      )
+    ),
+    React.createElement(
+      "li",
+      { className: "menu-item" },
+      React.createElement(
+        "a",
+        { href: "#" },
+        React.createElement("i", { className: "icon icon-emoji" }),
+        " Nginx"
+      )
+    ),
+    React.createElement(
+      "li",
+      { className: "menu-item" },
+      React.createElement(
+        "div",
+        { className: "menu-badge" },
+        React.createElement(
+          "label",
+          { className: "label label-primary" },
+          "2"
+        )
+      ),
+      React.createElement(
+        "a",
+        { href: "#" },
+        React.createElement("i", { className: "icon icon-message" }),
+        " Settings"
+      )
+    )
+  );
+};
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (props) {
+  return React.createElement(
+    "header",
+    { className: "navbar" },
+    React.createElement(
+      "section",
+      { className: "navbar-section" },
+      React.createElement(
+        "h1",
+        null,
+        React.createElement(
+          "a",
+          { href: "#", className: "header-title mr-10 ml-10" },
+          "Welcome to Hiproxy Dashboard"
+        )
+      )
+    ),
+    React.createElement(
+      "section",
+      { className: "navbar-section" },
+      React.createElement(
+        "div",
+        { className: "input-group input-inline" },
+        React.createElement("input", { className: "form-input", type: "text", placeholder: "search" }),
+        React.createElement(
+          "button",
+          { className: "btn btn-primary input-group-btn" },
+          "Search"
+        )
+      )
+    )
+  );
+};
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (props) {
+  return React.createElement(
+    "div",
+    { className: "card mr-10" },
+    React.createElement(
+      "div",
+      { className: "card-header" },
+      React.createElement(
+        "h4",
+        { className: "card-title" },
+        "hiproxy http server"
+      )
+    ),
+    React.createElement(
+      "div",
+      { className: "card-body" },
+      "Empower every person and every organization on the planet to achieve more."
+    )
+  );
+};
 
 /***/ })
 /******/ ]);
