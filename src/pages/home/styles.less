@@ -1,5 +1,8 @@
-.container {
+.home-page {
   padding: 0;
+  flex-direction: row;
+  display: flex;
+  flex: 1;
 }
 
 .header-title {
@@ -18,7 +21,7 @@ h1 {
 
 .side-bar {
   width: 225px;
-  background-color: #171E2D;
+  background-color: #32393E;
 
   .logo {
     display: flex;
@@ -41,13 +44,6 @@ h1 {
   }
 }
 
-.navbar {
-  background: white;
-  padding: 10px 0;
-  border-bottom: 1px solid #E7E7E7;
-}
-
-
 
 .menu {
   margin: 0;
@@ -59,7 +55,7 @@ h1 {
     padding: 0.5rem 1rem;
 
     a {
-      color: #B4B7BB;
+      color: #B3B4B8;
     }
   }
 }
@@ -71,9 +67,13 @@ h1 {
 
 .body {
   padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .main {
   flex: 1;
   padding-left: 10px;
+  overflow: scroll;
 }

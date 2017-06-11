@@ -1,5 +1,5 @@
 /**
- * @file card component
+ * @file Card component
  * @author zdying
  */
 
@@ -27,11 +27,11 @@ export default ({title, subTitle, body}) => {
           </li>
           <li>
             <span className="service-label">Service Port</span>
-            <span className="service-state color-gray">5525</span>
+            <span className="service-state">5525</span>
           </li>
           <li>
             <span className="service-label">Process ID</span>
-            <span className="service-state color-gray">6513</span>
+            <span className="service-state">6513</span>
           </li>
         </ul>
       </div>

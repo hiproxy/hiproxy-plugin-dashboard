@@ -1,5 +1,5 @@
 /**
- * @file card component
+ * @file Table component
  * @author zdying
  */
 

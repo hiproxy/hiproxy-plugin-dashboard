@@ -34,8 +34,8 @@ export class Home extends React.Component {
   render () {
     let {result} = this.props;
     return (
-      <div className="container columns col-gapless">
-        <div className="column col-2 side-bar">
+      <div className="home-page col-gapless">
+        <div className="side-bar">
           <div className="logo">
             <img src="./source/logo-light.svg" />
           </div>
@@ -46,7 +46,7 @@ export class Home extends React.Component {
             <button className="btn btn-primary" onClick={this.onClick.bind(this)}>primary button</button>
           </div>
         </div>
-        <div className="column col-10 body">
+        <div className="body">
           <Header />
           <div className="main">
             <div className="cards mt-10">

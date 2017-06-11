@@ -1,9 +1,16 @@
+/**
+ * @file Header component
+ * @author zdying
+ */
+
+import './styles.less';
+
 export default (props) => {
   return (
     <header className="navbar">
       <section className="navbar-section">
         <h1>
-          <a href="#" className="header-title mr-10 ml-10">Welcome to Hiproxy Dashboard</a>          
+          <a href="#" className="header-title mr-10">Welcome to Hiproxy Dashboard</a>          
         </h1>
       </section>
       <section className="navbar-section">
