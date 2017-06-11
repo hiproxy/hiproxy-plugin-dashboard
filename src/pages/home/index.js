@@ -20,6 +20,7 @@ import './styles.less';
 
 import Menu from './Menu';
 import Card from './Card';
+import Table from './Table';
 import Header from './Header';
 
 export class Home extends React.Component {
@@ -39,17 +40,21 @@ export class Home extends React.Component {
             <img src="./source/logo-light.svg" />
           </div>
           <Menu />
+          <br/>
+          <div style={{padding: '10px'}}>
+            <h4>Counter: {result}</h4>
+            <button className="btn btn-primary" onClick={this.onClick.bind(this)}>primary button</button>
+          </div>
         </div>
         <div className="column col-10 body">
           <Header />
           <div className="main">
-            Counter: <h4>{result}</h4>
-            <button className="btn btn-primary" onClick={this.onClick.bind(this)}>primary button</button>
             <div className="cards mt-10">
               <Card />
               <Card />
               <Card />
             </div>
+            <Table />
           </div>
         </div>
       </div>

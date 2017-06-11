@@ -3,17 +3,17 @@ export default (props) => {
     <ul className="menu">
       <li className="menu-item">
         <a href="#">
-          <i className="icon icon-link"></i> Slack
+          <i className="icon icon-link"></i> Hiproxy Service
         </a>
       </li>
       <li className="menu-item">
         <a href="#">
-          <i className="icon icon-photo"></i> HiProxy
+          <i className="icon icon-photo"></i> Github
         </a>
       </li>
       <li className="menu-item">
         <a href="#">
-          <i className="icon icon-emoji"></i> Nginx
+          <i className="icon icon-emoji"></i> Create Issues
         </a>
       </li>
       <li className="menu-item">
