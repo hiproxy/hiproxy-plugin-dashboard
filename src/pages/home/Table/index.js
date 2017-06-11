@@ -19,7 +19,7 @@ export default ({title, subTitle, body}) => {
       <tbody>
         <tr className="">
           <td>The Shawshank Redemption</td>
-          <td className="color-gray">Crime, Drama</td>
+          <td className="color-blue">Crime, Drama</td>
           <td>14 October 1994</td>
           <td>
             <button className="btn">Editor</button>
@@ -28,7 +28,7 @@ export default ({title, subTitle, body}) => {
         </tr>
         <tr className="">
           <td>The Shawshank Redemption</td>
-          <td className="color-gray">Crime, Drama</td>
+          <td className="color-blue">Crime, Drama</td>
           <td>14 October 1994</td>
           <td>
             <button className="btn">Editor</button>
@@ -37,7 +37,7 @@ export default ({title, subTitle, body}) => {
         </tr>
         <tr className="">
           <td>The Shawshank Redemption</td>
-          <td className="color-gray">Crime, Drama</td>
+          <td className="color-blue">Crime, Drama</td>
           <td>14 October 1994</td>
           <td>
             <button className="btn">Editor</button>

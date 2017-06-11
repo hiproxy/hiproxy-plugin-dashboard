@@ -11530,7 +11530,7 @@ exports = module.exports = __webpack_require__(107)(undefined);
 
 
 // module
-exports.push([module.i, ".container {\n  padding: 0;\n}\n.header-title {\n  font-size: 26px;\n}\nh1 {\n  font-size: 26px;\n  padding: 0;\n  margin: 0;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  display: flex;\n}\n.side-bar {\n  width: 225px;\n  background-color: #171E2D;\n}\n.side-bar .logo {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  height: 60px;\n}\n.side-bar .logo img {\n  width: 60px;\n  height: 60px;\n}\n.side-bar .logo h1 {\n  font-weight: 300;\n  font-size: 25px;\n  margin: 0 10px;\n  color: white;\n}\n.navbar {\n  background: white;\n  padding: 10px 0;\n  border-bottom: 1px solid #E7E7E7;\n}\n.menu {\n  margin: 0;\n  padding: 0;\n  background-color: transparent;\n}\n.menu .menu-item {\n  list-style: none;\n}\n.cards {\n  display: flex;\n  flex-direction: row;\n}\n.body {\n  padding: 0;\n}\n.main {\n  flex: 1;\n  padding-left: 10px;\n}\n", ""]);
+exports.push([module.i, ".container {\n  padding: 0;\n}\n.header-title {\n  font-size: 26px;\n}\nh1 {\n  font-size: 26px;\n  padding: 0;\n  margin: 0;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  display: flex;\n}\n.side-bar {\n  width: 225px;\n  background-color: #171E2D;\n}\n.side-bar .logo {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  height: 60px;\n}\n.side-bar .logo img {\n  width: 60px;\n  height: 60px;\n}\n.side-bar .logo h1 {\n  font-weight: 300;\n  font-size: 25px;\n  margin: 0 10px;\n  color: white;\n}\n.navbar {\n  background: white;\n  padding: 10px 0;\n  border-bottom: 1px solid #E7E7E7;\n}\n.menu {\n  margin: 0;\n  padding: 0;\n  background-color: transparent;\n}\n.menu .menu-item {\n  list-style: none;\n  padding: 0.5rem 1rem;\n}\n.menu .menu-item a {\n  color: #B4B7BB;\n}\n.cards {\n  display: flex;\n  flex-direction: row;\n}\n.body {\n  padding: 0;\n}\n.main {\n  flex: 1;\n  padding-left: 10px;\n}\n", ""]);
 
 // exports
 
@@ -25311,7 +25311,7 @@ exports = module.exports = __webpack_require__(107)(undefined);
 
 
 // module
-exports.push([module.i, ".card {\n  width: 320px;\n  height: 190px;\n  padding: 15px;\n  border-radius: 5px;\n  background: #EDF2F6;\n}\n.card .card-header {\n  padding: 0;\n}\n.card .card-header .card-title {\n  margin: 0;\n  font-weight: 400;\n}\n.card .card-body {\n  padding: 0;\n  margin-top: 20px;\n}\n.card .card-body ul {\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n}\n.card .card-body li {\n  list-style: none;\n  display: flex;\n  flex-direction: 1;\n  width: 50%;\n  padding-right: 10px;\n  margin-top: 5px;\n  margin-bottom: 5px;\n}\n.card .card-body .service-label {\n  color: #141414;\n  margin-right: 10px;\n}\n.card .card-body .service-state {\n  flex: 1;\n  text-align: right;\n  font-weight: 600;\n}\n.card .card-footer {\n  padding: 0;\n  margin-top: 20px;\n}\n.card .card-footer .btn {\n  margin-right: 10px;\n}\n.card .card-footer .btn:last-child {\n  margin-right: 0;\n}\n", ""]);
+exports.push([module.i, ".card {\n  width: 320px;\n  height: 190px;\n  padding: 15px;\n  border-radius: 5px;\n  background: #F8F9FA;\n}\n.card .card-header {\n  padding: 0;\n}\n.card .card-header .card-title {\n  margin: 0;\n  font-weight: 400;\n}\n.card .card-body {\n  padding: 0;\n  margin-top: 20px;\n}\n.card .card-body ul {\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n}\n.card .card-body li {\n  list-style: none;\n  display: flex;\n  flex-direction: 1;\n  width: 50%;\n  padding-right: 10px;\n  margin-top: 5px;\n  margin-bottom: 5px;\n}\n.card .card-body .service-label {\n  color: #141414;\n  margin-right: 10px;\n}\n.card .card-body .service-state {\n  flex: 1;\n  text-align: right;\n  font-weight: 600;\n}\n.card .card-footer {\n  padding: 0;\n  margin-top: 20px;\n}\n.card .card-footer .btn {\n  margin-right: 10px;\n  background: #0092FF;\n  border-color: #0092FF;\n}\n.card .card-footer .btn:last-child {\n  margin-right: 0;\n  background: #00D57C;\n  border-color: #00D57C;\n}\n", ""]);
 
 // exports
 
@@ -25409,7 +25409,7 @@ exports.default = function (_ref) {
         ),
         React.createElement(
           "td",
-          { className: "color-gray" },
+          { className: "color-blue" },
           "Crime, Drama"
         ),
         React.createElement(
@@ -25442,7 +25442,7 @@ exports.default = function (_ref) {
         ),
         React.createElement(
           "td",
-          { className: "color-gray" },
+          { className: "color-blue" },
           "Crime, Drama"
         ),
         React.createElement(
@@ -25475,7 +25475,7 @@ exports.default = function (_ref) {
         ),
         React.createElement(
           "td",
-          { className: "color-gray" },
+          { className: "color-blue" },
           "Crime, Drama"
         ),
         React.createElement(
