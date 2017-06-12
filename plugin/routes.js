@@ -13,14 +13,17 @@ module.exports = [
   {
     route: '/dashboard',
     render: function (route, request, response) {
-      sendFile(path.join(__dirname, '..', 'dashboard.html'), response);
+      response.writeHead(301, {
+        Location: '/dashboard/'
+      });
+
+      response.end();
     }
   },
   {
-    route: '/dashboard/static/',
+    route: '/dashboard(/*)',
     render: function (route, request, response) {
-      var filePath = path.join(__dirname, route.replace('/dashboard/static/', '/../'));
-      sendFile(filePath, response);
+      sendFile(path.join(__dirname, '..', route._ || 'index.html'), response);
     }
   }
 ];
