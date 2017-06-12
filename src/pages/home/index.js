@@ -22,6 +22,7 @@ import Menu from './Menu';
 import Card from './Card';
 import Table from './Table';
 import Header from './Header';
+import Editor from './Editor';
 
 export class Home extends React.Component {
   constructor (props) {
@@ -59,6 +60,7 @@ export class Home extends React.Component {
               <Card />
             </div>
             <Table />
+            {/*<Editor />*/}
           </div>
         </div>
       </div>

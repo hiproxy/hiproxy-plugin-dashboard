@@ -19,7 +19,7 @@ export default (props) => {
           <button className="btn btn-primary input-group-btn">Search</button>
         </div>*/}
         <figure className="avatar badge" data-badge="8" data-initial="YZ">
-          <img src="https://picturepan2.github.io/spectre/img/avatar-2.png" alt="YZ" />
+          <img src="./source/avatar-1.png" alt="YZ" />
         </figure>
       </section>
     </header>
