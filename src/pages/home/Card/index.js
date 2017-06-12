@@ -37,8 +37,17 @@ export default ({title, subTitle, body}) => {
       </div>
       <div className="card-footer">
         <button className="btn btn-primary btn-sm">Restart</button>
-        <button className="btn btn-primary btn-sm">Stop</button>        
+        <button className="btn btn-primary btn-sm">Stop</button>
+        <button className="btn btn-primary btn-sm" onClick={open}>Open Browser</button>
       </div>
     </div>
   )
+}
+
+function open () {
+  fetch('http://127.0.0.1:5525/api?action=open').then(function (res) {
+    console.log(res);
+  }).catch(function (err) {
+    console.log(err);
+  });
 }
