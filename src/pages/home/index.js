@@ -19,7 +19,7 @@ import {doClick} from './action';
 import './styles.less';
 
 import Menu from './Menu';
-import Card from './Card';
+import ServerInfoCard from './ServerInfoCard';
 import Table from './Table';
 import Header from './Header';
 import Editor from './Editor';
@@ -34,6 +34,8 @@ export class Home extends React.Component {
 
   render () {
     let {result} = this.props;
+    let serverInfo = window.serverInfo;
+
     return (
       <div className="home-page col-gapless">
         <div className="side-bar">
@@ -55,11 +57,13 @@ export class Home extends React.Component {
           </div>
           <div className="main">
             <div className="cards mt-10">
-              <Card />
-              <Card />
-              <Card />
+              <ServerInfoCard data={serverInfo.httpServer} pid={serverInfo.pid}/>
+              <ServerInfoCard data={serverInfo.httpsServer} pid={serverInfo.pid}/>
             </div>
-            <Table />
+            <h5 className="mt-10">Hosts Files</h5>
+            <Table files={serverInfo.hosts} fileType="hosts"/>
+            <h5 className="mt-10">Rewrite Files</h5>
+            <Table files={serverInfo.rewrites} fileType="rewrite" className="mt-10"/>
             {/*<Editor />*/}
           </div>
         </div>

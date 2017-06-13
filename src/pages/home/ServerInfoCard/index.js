@@ -5,33 +5,31 @@
 
 import './styles.less';
 
-export default ({title, subTitle, body}) => {
+export default ({data, pid}) => {
+  let {title, port, listening, address} = data;
+  console.log('data:', data);
   return (
     <div className="card mr-10">
-      {/*<div className="card-image">
-        <img src="https://picturepan2.github.io/spectre/img/macos-sierra.jpg" className="img-responsive" />
-      </div>*/}
       <div className="card-header">
-        <h4 className="card-title">hiproxy http server</h4>
-        {/*<h6 className="card-subtitle">Software and hardware</h6>*/}
+        <h4 className="card-title">{title}</h4>
       </div>
       <div className="card-body">
         <ul>
           <li>
-            <span className="service-label">HTTP</span>
-            <span className="service-state color-green text-capitalize">running</span>
+            <span className="service-label">State</span>
+            <span className="service-state color-green text-capitalize">&nbsp;</span>
           </li>
           <li>
-            <span className="service-label">HTTPS</span>
-            <span className="service-state color-blue text-capitalize">stoped</span>
+            <span className="service-label"></span>
+            <span className="service-state color-blue text-capitalize">{listening ? 'running' : 'stoped'}</span>
           </li>
           <li>
             <span className="service-label">Service Port</span>
-            <span className="service-state">5525</span>
+            <span className="service-state">{address.port}</span>
           </li>
           <li>
             <span className="service-label">Process ID</span>
-            <span className="service-state">6513</span>
+            <span className="service-state">{pid}</span>
           </li>
         </ul>
       </div>
