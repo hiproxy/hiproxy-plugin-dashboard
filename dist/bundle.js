@@ -32506,23 +32506,7 @@ var Home = exports.Home = function (_React$Component) {
             { className: 'logo' },
             _react2.default.createElement('img', { src: './source/logo-light.svg' })
           ),
-          _react2.default.createElement(_Menu2.default, null),
-          _react2.default.createElement('br', null),
-          _react2.default.createElement(
-            'div',
-            { style: { padding: '10px' } },
-            _react2.default.createElement(
-              'h4',
-              null,
-              'Counter: ',
-              result
-            ),
-            _react2.default.createElement(
-              'button',
-              { className: 'btn btn-primary', onClick: this.onClick.bind(this) },
-              'primary button'
-            )
-          )
+          _react2.default.createElement(_Menu2.default, null)
         ),
         _react2.default.createElement(
           'div',
