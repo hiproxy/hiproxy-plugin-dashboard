@@ -599,7 +599,7 @@ module.exports = ExecutionEnvironment;
 
 
 
-var _prodInvariant = __webpack_require__(15);
+var _prodInvariant = __webpack_require__(16);
 
 var ReactCurrentOwner = __webpack_require__(10);
 
@@ -1014,7 +1014,7 @@ var _prodInvariant = __webpack_require__(2),
     _assign = __webpack_require__(3);
 
 var CallbackQueue = __webpack_require__(71);
-var PooledClass = __webpack_require__(13);
+var PooledClass = __webpack_require__(14);
 var ReactFeatureFlags = __webpack_require__(76);
 var ReactReconciler = __webpack_require__(18);
 var Transaction = __webpack_require__(34);
@@ -1304,7 +1304,7 @@ module.exports = ReactCurrentOwner;
 
 var _assign = __webpack_require__(3);
 
-var PooledClass = __webpack_require__(13);
+var PooledClass = __webpack_require__(14);
 
 var emptyFunction = __webpack_require__(8);
 var warning = __webpack_require__(1);
@@ -1778,6 +1778,16 @@ module.exports = DOMProperty;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+module.exports = __webpack_require__(19);
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -1891,7 +1901,7 @@ var PooledClass = {
 module.exports = PooledClass;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2237,7 +2247,7 @@ ReactElement.isValidElement = function (object) {
 module.exports = ReactElement;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2279,16 +2289,6 @@ function reactProdInvariant(code) {
 }
 
 module.exports = reactProdInvariant;
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(19);
-
 
 /***/ }),
 /* 17 */
@@ -2610,7 +2610,7 @@ var ReactComponent = __webpack_require__(56);
 var ReactPureComponent = __webpack_require__(239);
 var ReactClass = __webpack_require__(235);
 var ReactDOMFactories = __webpack_require__(236);
-var ReactElement = __webpack_require__(14);
+var ReactElement = __webpack_require__(15);
 var ReactPropTypes = __webpack_require__(237);
 var ReactVersion = __webpack_require__(240);
 
@@ -7081,7 +7081,7 @@ function warning(message) {
 
 
 
-var _prodInvariant = __webpack_require__(15);
+var _prodInvariant = __webpack_require__(16);
 
 var ReactNoopUpdateQueue = __webpack_require__(57);
 
@@ -29206,7 +29206,7 @@ var _prodInvariant = __webpack_require__(2);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PooledClass = __webpack_require__(13);
+var PooledClass = __webpack_require__(14);
 
 var invariant = __webpack_require__(0);
 
@@ -31294,7 +31294,7 @@ module.exports = traverseAllChildren;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_hoist_non_react_statics__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_Subscription__ = __webpack_require__(230);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_PropTypes__ = __webpack_require__(93);
@@ -31740,7 +31740,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactComponentTreeHook = __webpack_require__(6);
-var ReactElement = __webpack_require__(14);
+var ReactElement = __webpack_require__(15);
 
 var checkReactTypeSpec = __webpack_require__(241);
 
@@ -32427,7 +32427,7 @@ exports.Home = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(16);
+var _react = __webpack_require__(13);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -32664,7 +32664,7 @@ module.exports = __webpack_require__(166);
 
 var _redux = __webpack_require__(28);
 
-var _react = __webpack_require__(16);
+var _react = __webpack_require__(13);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -32973,100 +32973,257 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(13);
+
+var _react2 = _interopRequireDefault(_react);
+
 __webpack_require__(251);
 
-exports.default = function (_ref) {
-  var files = _ref.files,
-      fileType = _ref.fileType;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-  console.log(files);
-  return React.createElement(
-    "table",
-    { className: "table table-striped table-hover" },
-    React.createElement(
-      "thead",
-      null,
-      React.createElement(
-        "tr",
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @file Table component
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @author zdying
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var _class = function (_React$Component) {
+  _inherits(_class, _React$Component);
+
+  function _class(props, state) {
+    _classCallCheck(this, _class);
+
+    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props, state));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(_class, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          files = _props.files,
+          fileType = _props.fileType;
+
+
+      return _react2.default.createElement(
+        'div',
         null,
-        React.createElement(
-          "th",
-          null,
-          "File Path"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "State"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Domain Count"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Config Type"
-        ),
-        React.createElement(
-          "th",
-          null,
-          "Operate"
-        )
-      )
-    ),
-    React.createElement(
-      "tbody",
-      null,
-      Object.keys(files).map(function (file) {
-        var info = files[file];
-        return React.createElement(
-          "tr",
-          { className: "", key: file },
-          React.createElement(
-            "td",
-            { className: "color-blue" },
-            file
-          ),
-          React.createElement(
-            "td",
+        _react2.default.createElement(
+          'table',
+          { className: 'table table-striped table-hover' },
+          _react2.default.createElement(
+            'thead',
             null,
-            "Working"
-          ),
-          React.createElement(
-            "td",
-            null,
-            Object.keys(info).length,
-            " Domains"
-          ),
-          React.createElement(
-            "td",
-            null,
-            fileType
-          ),
-          React.createElement(
-            "td",
-            null,
-            React.createElement(
-              "button",
-              { className: "btn" },
-              "Edit"
-            ),
-            React.createElement(
-              "button",
-              { className: "btn disabled" },
-              "Disable"
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'th',
+                null,
+                'File Path'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'State'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Domain Count'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Config Type'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Operate'
+              )
             )
+          ),
+          _react2.default.createElement(
+            'tbody',
+            null,
+            Object.keys(files).map(function (file) {
+              var info = files[file];
+              return _react2.default.createElement(
+                'tr',
+                { className: '', key: file },
+                _react2.default.createElement(
+                  'td',
+                  { className: 'color-blue' },
+                  file
+                ),
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  'Working'
+                ),
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  Object.keys(info).length,
+                  ' Domains'
+                ),
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  fileType
+                ),
+                _react2.default.createElement(
+                  'td',
+                  null,
+                  _react2.default.createElement(
+                    'button',
+                    { className: 'btn', onClick: _this2.editFile.bind(_this2, file, fileType) },
+                    'Edit'
+                  ),
+                  _react2.default.createElement(
+                    'button',
+                    { className: 'btn disabled' },
+                    'Disable'
+                  )
+                )
+              );
+            })
           )
-        );
-      })
-    )
-  );
-}; /**
-    * @file Table component
-    * @author zdying
-    */
+        ),
+        this.renderDialog()
+      );
+    }
+  }, {
+    key: 'renderDialog',
+    value: function renderDialog() {
+      var _this3 = this;
+
+      var fileInfo = this.state.fileInfo;
+
+
+      if (fileInfo) {
+        var status = fileInfo.status,
+            message = fileInfo.message,
+            data = fileInfo.data;
+
+
+        if (status === 0 && data.content) {
+          return _react2.default.createElement(
+            'div',
+            { className: 'modal', style: { display: 'flex', zIndex: 400, opacity: 1 } },
+            _react2.default.createElement('a', { href: 'javascript:;', onClick: this.hideDialog.bind(this), className: 'modal-overlay', 'aria-label': 'Close' }),
+            _react2.default.createElement(
+              'div',
+              { className: 'modal-container', role: 'document' },
+              _react2.default.createElement(
+                'div',
+                { className: 'modal-header' },
+                _react2.default.createElement('a', { href: '#modals', className: 'btn btn-clear float-right', 'aria-label': 'Close' }),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'modal-title' },
+                  'Modal title'
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'modal-body' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'content' },
+                  _react2.default.createElement(
+                    'pre',
+                    { ref: function ref(o) {
+                        return _this3.editor = o;
+                      }, style: { width: '600px' }, contentEditable: true, className: 'editor' },
+                    data.content
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'modal-footer' },
+                _react2.default.createElement(
+                  'a',
+                  { href: 'javascript:;', className: 'btn btn-link', onClick: this.hideDialog.bind(this) },
+                  'Close'
+                ),
+                _react2.default.createElement(
+                  'button',
+                  { className: 'btn btn-primary', onClick: this.saveFile.bind(this) },
+                  'Save'
+                )
+              )
+            )
+          );
+        } else {}
+      }
+    }
+  }, {
+    key: 'editFile',
+    value: function editFile(file, fileType) {
+      var _this4 = this;
+
+      fetch('/dashboard/api/readFile?file=' + file).then(function (res) {
+        return res.json();
+      }).then(function (json) {
+        _this4.setState({
+          fileInfo: json
+        });
+      }).catch(function (err) {
+        _this4.setState({
+          fileInfo: err
+        });
+      });
+    }
+  }, {
+    key: 'hideDialog',
+    value: function hideDialog() {
+      this.setState({
+        fileInfo: null
+      });
+    }
+  }, {
+    key: 'saveFile',
+    value: function saveFile(file) {
+      var _this5 = this;
+
+      var content = this.editor.innerText;
+      fetch('/dashboard/api/saveFile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          file: this.state.fileInfo.data.file,
+          content: content
+        })
+      }).then(function (json) {
+        _this5.setState({
+          fileInfo: null
+        });
+      }).catch(function (err) {
+        _this5.setState({
+          fileInfo: err
+        });
+      });
+    }
+  }]);
+
+  return _class;
+}(_react2.default.Component);
+
+exports.default = _class;
 
 /***/ }),
 /* 113 */
@@ -34347,7 +34504,7 @@ exports = module.exports = __webpack_require__(20)(undefined);
 
 
 // module
-exports.push([module.i, ".table th {\n  border-bottom: 1px solid #E7E7E7;\n  text-transform: capitalize;\n  font-size: 16px;\n  font-weight: 400;\n}\n.table tr {\n  height: 70px;\n}\n.table td {\n  font-size: 16px;\n}\n.table td .btn {\n  margin-right: 10px;\n  border-color: #88C8ED;\n  color: #4F4F4F;\n  border-radius: 19px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-weight: 200;\n}\n.table td .btn:hover {\n  background-color: #88C8ED;\n  color: white;\n}\n.table td .btn:last-child {\n  margin-right: 0;\n}\n", ""]);
+exports.push([module.i, ".table th {\n  border-bottom: 1px solid #E7E7E7;\n  text-transform: capitalize;\n  font-size: 16px;\n  font-weight: 400;\n}\n.table tr {\n  height: 70px;\n}\n.table td {\n  font-size: 16px;\n}\n.table td .btn {\n  margin-right: 10px;\n  border-color: #88C8ED;\n  color: #4F4F4F;\n  border-radius: 19px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-weight: 200;\n}\n.table td .btn:hover {\n  background-color: #88C8ED;\n  color: white;\n}\n.table td .btn:last-child {\n  margin-right: 0;\n}\n.table .editor {\n  width: 600px;\n  outline: 0;\n  background: #f8f9fa;\n  border-radius: 3px;\n  padding: 5px;\n  margin: 0;\n}\n", ""]);
 
 // exports
 
@@ -36464,7 +36621,7 @@ var _brace = __webpack_require__(60);
 
 var _brace2 = _interopRequireDefault(_brace);
 
-var _react = __webpack_require__(16);
+var _react = __webpack_require__(13);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -36922,7 +37079,7 @@ var _brace = __webpack_require__(60);
 
 var _brace2 = _interopRequireDefault(_brace);
 
-var _react = __webpack_require__(16);
+var _react = __webpack_require__(13);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -38651,7 +38808,7 @@ module.exports = EnterLeaveEventPlugin;
 
 var _assign = __webpack_require__(3);
 
-var PooledClass = __webpack_require__(13);
+var PooledClass = __webpack_require__(14);
 
 var getTextContentAccessor = __webpack_require__(86);
 
@@ -43348,7 +43505,7 @@ var _assign = __webpack_require__(3);
 
 var EventListener = __webpack_require__(61);
 var ExecutionEnvironment = __webpack_require__(5);
-var PooledClass = __webpack_require__(13);
+var PooledClass = __webpack_require__(14);
 var ReactDOMComponentTree = __webpack_require__(4);
 var ReactUpdates = __webpack_require__(9);
 
@@ -44266,7 +44423,7 @@ module.exports = ReactPropTypeLocationNames;
 var _assign = __webpack_require__(3);
 
 var CallbackQueue = __webpack_require__(71);
-var PooledClass = __webpack_require__(13);
+var PooledClass = __webpack_require__(14);
 var ReactBrowserEventEmitter = __webpack_require__(32);
 var ReactInputSelection = __webpack_require__(78);
 var ReactInstrumentation = __webpack_require__(7);
@@ -44542,7 +44699,7 @@ module.exports = ReactRef;
 
 var _assign = __webpack_require__(3);
 
-var PooledClass = __webpack_require__(13);
+var PooledClass = __webpack_require__(14);
 var Transaction = __webpack_require__(34);
 var ReactInstrumentation = __webpack_require__(7);
 var ReactServerUpdateQueue = __webpack_require__(197);
@@ -46780,7 +46937,7 @@ module.exports = ReactMount.renderSubtreeIntoContainer;
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = createProvider;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
@@ -47437,7 +47594,7 @@ module.exports = KeyEscapeUtils;
 
 
 
-var _prodInvariant = __webpack_require__(15);
+var _prodInvariant = __webpack_require__(16);
 
 var invariant = __webpack_require__(0);
 
@@ -47554,7 +47711,7 @@ module.exports = PooledClass;
 
 
 var PooledClass = __webpack_require__(233);
-var ReactElement = __webpack_require__(14);
+var ReactElement = __webpack_require__(15);
 
 var emptyFunction = __webpack_require__(8);
 var traverseAllChildren = __webpack_require__(244);
@@ -47749,11 +47906,11 @@ module.exports = ReactChildren;
 
 
 
-var _prodInvariant = __webpack_require__(15),
+var _prodInvariant = __webpack_require__(16),
     _assign = __webpack_require__(3);
 
 var ReactComponent = __webpack_require__(56);
-var ReactElement = __webpack_require__(14);
+var ReactElement = __webpack_require__(15);
 var ReactPropTypeLocationNames = __webpack_require__(97);
 var ReactNoopUpdateQueue = __webpack_require__(57);
 
@@ -48477,7 +48634,7 @@ module.exports = ReactClass;
 
 
 
-var ReactElement = __webpack_require__(14);
+var ReactElement = __webpack_require__(15);
 
 /**
  * Create a factory that creates HTML tag elements.
@@ -48652,7 +48809,7 @@ module.exports = ReactDOMFactories;
 
 
 
-var _require = __webpack_require__(14),
+var _require = __webpack_require__(15),
     isValidElement = _require.isValidElement;
 
 var factory = __webpack_require__(66);
@@ -48764,7 +48921,7 @@ module.exports = '15.5.4';
 
 
 
-var _prodInvariant = __webpack_require__(15);
+var _prodInvariant = __webpack_require__(16);
 
 var ReactPropTypeLocationNames = __webpack_require__(97);
 var ReactPropTypesSecret = __webpack_require__(238);
@@ -48882,9 +49039,9 @@ module.exports = getNextDebugID;
  */
 
 
-var _prodInvariant = __webpack_require__(15);
+var _prodInvariant = __webpack_require__(16);
 
-var ReactElement = __webpack_require__(14);
+var ReactElement = __webpack_require__(15);
 
 var invariant = __webpack_require__(0);
 
@@ -48926,7 +49083,7 @@ module.exports = onlyChild;
 
 
 
-var _prodInvariant = __webpack_require__(15);
+var _prodInvariant = __webpack_require__(16);
 
 var ReactCurrentOwner = __webpack_require__(10);
 var REACT_ELEMENT_TYPE = __webpack_require__(95);

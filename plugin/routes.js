@@ -7,6 +7,8 @@
 
 var fs = require('fs');
 var path = require('path');
+var url = require('url');
+var querystring = require('querystring');
 var mustache = require('mustache');
 var getMimeType = require('simple-mime')('text/plain');
 
@@ -33,6 +35,9 @@ module.exports = [
         listening: false
       };
 
+      console.log('page name ', pageName);
+      
+
       if (pageName === 'index.html') {
         data = hiServer ? {
           hosts: hiServer.hosts._files,
@@ -55,6 +60,8 @@ module.exports = [
         } : null;
 
         return render(filePath, response, {info: JSON.stringify(data)});
+      } else if (pageName.indexOf('api') === 0) {
+        return doAction(pageName, request, response);
       }
 
       sendFile(filePath, response);
@@ -104,5 +111,42 @@ function sendFile (file, res) {
     stream.pipe(res);
   } else {
     res.end(error.stack || error.message || error);
+  }
+}
+
+function doAction (pageName, req, res) {
+  var action = pageName.split('/')[1];
+  var query = querystring.parse(url.parse(req.url).query);
+  var method = req.method;
+  var isPost = method.toLowerCase() === 'post';
+  var body = '';
+
+  try {
+    var _doAction = require(path.join(__dirname, 'actions', action));
+  } catch (err) {
+    res.writeHead(200, {
+      'Content-Type': 'application/json'
+    });
+    res.end(JSON.stringify({
+      status: 1,
+      message: err.message || "Action handler does not exists."
+    }));
+
+    return;
+  }
+
+  if (isPost) {
+    req.on('data', function (_data) {
+      body += _data;
+    });
+    req.on('end', function () {
+      console.log('body ==>', body);
+      if (req.headers['content-type'].indexOf('application/json') !== -1){
+        body = JSON.parse(body);
+      }
+      _doAction(body, req, res);
+    })
+  } else {
+    _doAction(query, req, res);
   }
 }
