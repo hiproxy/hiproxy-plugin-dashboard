@@ -2,26 +2,18 @@ export default (props) => {
   return (
     <ul className="menu">
       <li className="menu-item">
-        <a href="#">
-          <i className="icon icon-link"></i> Hiproxy Service
+        <a href="/dashboard/">
+          <i className="icon icon-link"></i> Hiproxy Dashboard
         </a>
       </li>
       <li className="menu-item">
-        <a href="#">
+        <a href="https://github.com/hiproxy" target="_blank">
           <i className="icon icon-photo"></i> Github
         </a>
       </li>
       <li className="menu-item">
-        <a href="#">
-          <i className="icon icon-emoji"></i> Create Issues
-        </a>
-      </li>
-      <li className="menu-item">
-        <div className="menu-badge">
-          <label className="label label-primary">2</label>
-        </div>
-        <a href="#">
-          <i className="icon icon-message"></i> Settings
+        <a href="https://github.com/hiproxy/hiproxy/issues" target="_blank">
+          <i className="icon icon-emoji"></i> New Issues
         </a>
       </li>
     </ul>

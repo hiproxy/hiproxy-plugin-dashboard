@@ -35,6 +35,8 @@ export class Home extends React.Component {
   render () {
     let {result} = this.props;
     let serverInfo = window.serverInfo;
+    let httpServer = serverInfo.httpServer;
+    let pacFile = "http://127.0.0.1:" + httpServer.port + '/proxy.pac';
 
     return (
       <div className="home-page col-gapless">
@@ -51,18 +53,34 @@ export class Home extends React.Component {
         </div>
         <div className="body">
           <Header />
-          <div className="toast toast-success ml-10 mr-10 mt-10" style={{width: 'auto'}}>
-            <button className="btn btn-clear float-right"></button>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </div>
+          {
+            httpServer.listening ?
+            <div className="toast ml-10 mr-10 mt-10" style={{width: 'auto'}}>
+              <button className="btn btn-clear float-right"></button>
+              Proxy-Auto-Conifg File: <a href={pacFile + '?type=view'} target="_blank" style={{fontWeight: 400}}>{pacFile}</a>
+            </div> :
+            null
+          }
           <div className="main">
             <div className="cards mt-10">
               <ServerInfoCard data={serverInfo.httpServer} pid={serverInfo.pid}/>
               <ServerInfoCard data={serverInfo.httpsServer} pid={serverInfo.pid}/>
             </div>
-            <h5 className="mt-10">Hosts Files</h5>
+            <div className="table-header">
+              <h5 className="mt-10">Hosts Files</h5>
+              <div className="search input-group input-inline">
+                <input className="form-input input-sm disabled" type="text" placeholder="file name or domain" />
+                <button className="btn btn-primary btn-sm input-group-btn disabled">Filter</button>
+              </div>
+            </div>
             <Table files={serverInfo.hosts} fileType="hosts"/>
-            <h5 className="mt-10">Rewrite Files</h5>
+            <div className="table-header">
+              <h5 className="mt-10">Rewrite Files</h5>
+              <div className="search input-group input-inline">
+                <input className="form-input input-sm disabled" type="text" placeholder="file name or domain" />
+                <button className="btn btn-primary btn-sm input-group-btn disabled">Filter</button>
+              </div>
+            </div>
             <Table files={serverInfo.rewrites} fileType="rewrite" className="mt-10"/>
             {/*<Editor />*/}
           </div>

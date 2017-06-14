@@ -22,7 +22,7 @@ module.exports = [
     }
   },
   {
-    route: '/dashboard(/*)',
+    route: '/dashboard/(*)',
     render: function (route, request, response) {
       var pageName = route._ || 'index.html';
       var data = null;
@@ -54,16 +54,15 @@ module.exports = [
           pid: process.pid
         } : null;
 
-        return render(path.join(__dirname, '..', pageName), response, {info: JSON.stringify(data)});
+        return render(filePath, response, {info: JSON.stringify(data)});
       }
 
-      sendFile(path.join(__dirname, '..', pageName), response);
+      sendFile(filePath, response);
     }
   }
 ];
 
 function render (file, res, data) {
-  var mime = getMimeType(file);
   var statusCode = 200;
   var content = null;
 
@@ -72,7 +71,6 @@ function render (file, res, data) {
       statusCode = 500;
       content = err.stack;
     } else {
-      console.log(text, '????');
       content = mustache.render(text, data);
     }
 

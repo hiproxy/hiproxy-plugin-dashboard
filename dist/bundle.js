@@ -32494,6 +32494,8 @@ var Home = exports.Home = function (_React$Component) {
       var result = this.props.result;
 
       var serverInfo = window.serverInfo;
+      var httpServer = serverInfo.httpServer;
+      var pacFile = "http://127.0.0.1:" + httpServer.port + '/proxy.pac';
 
       return _react2.default.createElement(
         'div',
@@ -32512,12 +32514,17 @@ var Home = exports.Home = function (_React$Component) {
           'div',
           { className: 'body' },
           _react2.default.createElement(_Header2.default, null),
-          _react2.default.createElement(
+          httpServer.listening ? _react2.default.createElement(
             'div',
-            { className: 'toast toast-success ml-10 mr-10 mt-10', style: { width: 'auto' } },
+            { className: 'toast ml-10 mr-10 mt-10', style: { width: 'auto' } },
             _react2.default.createElement('button', { className: 'btn btn-clear float-right' }),
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-          ),
+            'Proxy-Auto-Conifg File: ',
+            _react2.default.createElement(
+              'a',
+              { href: pacFile + '?type=view', target: '_blank', style: { fontWeight: 400 } },
+              pacFile
+            )
+          ) : null,
           _react2.default.createElement(
             'div',
             { className: 'main' },
@@ -32528,15 +32535,43 @@ var Home = exports.Home = function (_React$Component) {
               _react2.default.createElement(_ServerInfoCard2.default, { data: serverInfo.httpsServer, pid: serverInfo.pid })
             ),
             _react2.default.createElement(
-              'h5',
-              { className: 'mt-10' },
-              'Hosts Files'
+              'div',
+              { className: 'table-header' },
+              _react2.default.createElement(
+                'h5',
+                { className: 'mt-10' },
+                'Hosts Files'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'search input-group input-inline' },
+                _react2.default.createElement('input', { className: 'form-input input-sm disabled', type: 'text', placeholder: 'file name or domain' }),
+                _react2.default.createElement(
+                  'button',
+                  { className: 'btn btn-primary btn-sm input-group-btn disabled' },
+                  'Filter'
+                )
+              )
             ),
             _react2.default.createElement(_Table2.default, { files: serverInfo.hosts, fileType: 'hosts' }),
             _react2.default.createElement(
-              'h5',
-              { className: 'mt-10' },
-              'Rewrite Files'
+              'div',
+              { className: 'table-header' },
+              _react2.default.createElement(
+                'h5',
+                { className: 'mt-10' },
+                'Rewrite Files'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'search input-group input-inline' },
+                _react2.default.createElement('input', { className: 'form-input input-sm disabled', type: 'text', placeholder: 'file name or domain' }),
+                _react2.default.createElement(
+                  'button',
+                  { className: 'btn btn-primary btn-sm input-group-btn disabled' },
+                  'Filter'
+                )
+              )
             ),
             _react2.default.createElement(_Table2.default, { files: serverInfo.rewrites, fileType: 'rewrite', className: 'mt-10' })
           )
@@ -32742,8 +32777,8 @@ exports.default = function (props) {
       { className: "navbar-section" },
       React.createElement(
         "figure",
-        { className: "avatar badge", "data-badge": "8", "data-initial": "YZ" },
-        React.createElement("img", { src: "./source/avatar-1.png", alt: "YZ" })
+        { className: "avatar", "data-initial": "Face" },
+        React.createElement("img", { src: "./source/avatar-1.png", alt: "Face" })
       )
     )
   );
@@ -32772,9 +32807,9 @@ exports.default = function (props) {
       { className: "menu-item" },
       React.createElement(
         "a",
-        { href: "#" },
+        { href: "/dashboard/" },
         React.createElement("i", { className: "icon icon-link" }),
-        " Hiproxy Service"
+        " Hiproxy Dashboard"
       )
     ),
     React.createElement(
@@ -32782,7 +32817,7 @@ exports.default = function (props) {
       { className: "menu-item" },
       React.createElement(
         "a",
-        { href: "#" },
+        { href: "https://github.com/hiproxy", target: "_blank" },
         React.createElement("i", { className: "icon icon-photo" }),
         " Github"
       )
@@ -32792,28 +32827,9 @@ exports.default = function (props) {
       { className: "menu-item" },
       React.createElement(
         "a",
-        { href: "#" },
+        { href: "https://github.com/hiproxy/hiproxy/issues", target: "_blank" },
         React.createElement("i", { className: "icon icon-emoji" }),
-        " Create Issues"
-      )
-    ),
-    React.createElement(
-      "li",
-      { className: "menu-item" },
-      React.createElement(
-        "div",
-        { className: "menu-badge" },
-        React.createElement(
-          "label",
-          { className: "label label-primary" },
-          "2"
-        )
-      ),
-      React.createElement(
-        "a",
-        { href: "#" },
-        React.createElement("i", { className: "icon icon-message" }),
-        " Settings"
+        " New Issues"
       )
     )
   );
@@ -32840,98 +32856,98 @@ exports.default = function (_ref) {
       listening = data.listening,
       address = data.address;
 
-  console.log('data:', data);
+
   return React.createElement(
-    'div',
-    { className: 'card mr-10' },
+    "div",
+    { className: "card mr-10" },
     React.createElement(
-      'div',
-      { className: 'card-header' },
+      "div",
+      { className: "card-header" },
       React.createElement(
-        'h4',
-        { className: 'card-title' },
+        "h4",
+        { className: "card-title" },
         title
       )
     ),
     React.createElement(
-      'div',
-      { className: 'card-body' },
+      "div",
+      { className: "card-body" },
       React.createElement(
-        'ul',
+        "ul",
         null,
         React.createElement(
-          'li',
+          "li",
           null,
           React.createElement(
-            'span',
-            { className: 'service-label' },
-            'State'
+            "span",
+            { className: "service-label" },
+            "State"
           ),
           React.createElement(
-            'span',
-            { className: 'service-state color-green text-capitalize' },
-            '\xA0'
+            "span",
+            { className: "service-state color-green text-capitalize" },
+            "\xA0"
           )
         ),
         React.createElement(
-          'li',
+          "li",
           null,
-          React.createElement('span', { className: 'service-label' }),
+          React.createElement("span", { className: "service-label" }),
           React.createElement(
-            'span',
-            { className: 'service-state color-blue text-capitalize' },
+            "span",
+            { className: "service-state color-blue text-capitalize" },
             listening ? 'running' : 'stoped'
           )
         ),
         React.createElement(
-          'li',
+          "li",
           null,
           React.createElement(
-            'span',
-            { className: 'service-label' },
-            'Service Port'
+            "span",
+            { className: "service-label" },
+            "Service Port"
           ),
           React.createElement(
-            'span',
-            { className: 'service-state' },
+            "span",
+            { className: "service-state" },
             address.port
           )
         ),
         React.createElement(
-          'li',
+          "li",
           null,
           React.createElement(
-            'span',
-            { className: 'service-label' },
-            'Process ID'
+            "span",
+            { className: "service-label" },
+            "Process ID"
           ),
           React.createElement(
-            'span',
-            { className: 'service-state' },
+            "span",
+            { className: "service-state" },
             pid
           )
         )
       )
     ),
-    React.createElement(
-      'div',
-      { className: 'card-footer' },
+    listening ? React.createElement(
+      "div",
+      { className: "card-footer" },
       React.createElement(
-        'button',
-        { className: 'btn btn-primary btn-sm' },
-        'Restart'
+        "button",
+        { className: "btn btn-primary btn-sm disabled" },
+        "Restart"
       ),
       React.createElement(
-        'button',
-        { className: 'btn btn-primary btn-sm' },
-        'Stop'
+        "button",
+        { className: "btn btn-primary btn-sm disabled" },
+        "Stop"
       ),
       React.createElement(
-        'button',
-        { className: 'btn btn-primary btn-sm', onClick: open },
-        'Open Browser'
+        "button",
+        { className: "btn btn-primary btn-sm", onClick: open },
+        "Open Browser"
       )
-    )
+    ) : null
   );
 }; /**
     * @file Card component
@@ -32939,7 +32955,7 @@ exports.default = function (_ref) {
     */
 
 function open() {
-  fetch('http://127.0.0.1:5525/api?action=open').then(function (res) {
+  fetch('http://127.0.0.1:' + window.serverInfo.httpServer.port + '/api?action=open').then(function (res) {
     console.log(res);
   }).catch(function (err) {
     console.log(err);
@@ -33035,12 +33051,12 @@ exports.default = function (_ref) {
             React.createElement(
               "button",
               { className: "btn" },
-              "Editor"
+              "Edit"
             ),
             React.createElement(
               "button",
-              { className: "btn" },
-              "Order"
+              { className: "btn disabled" },
+              "Disable"
             )
           )
         );
@@ -34345,7 +34361,7 @@ exports = module.exports = __webpack_require__(20)(undefined);
 
 
 // module
-exports.push([module.i, ".home-page {\n  padding: 0;\n  flex-direction: row;\n  display: flex;\n  flex: 1;\n}\n.header-title {\n  font-size: 26px;\n}\nh1 {\n  font-size: 26px;\n  padding: 0;\n  margin: 0;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  display: flex;\n}\n.side-bar {\n  width: 225px;\n  background-color: #32393E;\n}\n.side-bar .logo {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  padding: 15px 0 0 0;\n}\n.side-bar .logo img {\n  width: 60px;\n  height: 60px;\n}\n.side-bar .logo h1 {\n  font-weight: 300;\n  font-size: 25px;\n  margin: 0 10px;\n  color: white;\n}\n.menu {\n  margin: 0;\n  padding: 0;\n  background-color: transparent;\n}\n.menu .menu-item {\n  list-style: none;\n  padding: 0.5rem 1rem;\n}\n.menu .menu-item a {\n  color: #B3B4B8;\n}\n.menu .menu-item .icon {\n  margin-right: 10px;\n}\n.cards {\n  display: flex;\n  flex-direction: row;\n}\n.body {\n  padding: 0;\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n.main {\n  flex: 1;\n  padding: 0 10px 10px;\n  overflow: scroll;\n}\n.main h5 {\n  margin-top: 30px;\n  margin-bottom: -5px;\n  padding-left: 1rem;\n  font-weight: 500;\n}\n", ""]);
+exports.push([module.i, ".home-page {\n  padding: 0;\n  flex-direction: row;\n  display: flex;\n  flex: 1;\n}\n.header-title {\n  font-size: 26px;\n}\nh1 {\n  font-size: 26px;\n  padding: 0;\n  margin: 0;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  display: flex;\n}\n.side-bar {\n  width: 225px;\n  background-color: #32393E;\n}\n.side-bar .logo {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  padding: 15px 0 0 0;\n}\n.side-bar .logo img {\n  width: 60px;\n  height: 60px;\n}\n.side-bar .logo h1 {\n  font-weight: 300;\n  font-size: 25px;\n  margin: 0 10px;\n  color: white;\n}\n.menu {\n  margin: 0;\n  padding: 0;\n  background-color: transparent;\n}\n.menu .menu-item {\n  list-style: none;\n  padding: 0.5rem 1rem;\n}\n.menu .menu-item a {\n  color: #B3B4B8;\n}\n.menu .menu-item .icon {\n  margin-right: 10px;\n}\n.cards {\n  display: flex;\n  flex-direction: row;\n}\n.body {\n  padding: 0;\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n.main {\n  flex: 1;\n  padding: 0 10px 10px;\n  overflow: scroll;\n}\n.main .table-header {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin-top: 30px;\n  margin-bottom: -5px;\n  padding-left: 1rem;\n}\n.main .table-header h5 {\n  font-weight: 500;\n  margin: 0;\n  padding: 0;\n}\n", ""]);
 
 // exports
 

@@ -15,7 +15,7 @@ module.exports = {
 
   // Rewrite config redirectives
   directives: directives,
-  
+
   // HTTP server routes
   routes: routes
 };

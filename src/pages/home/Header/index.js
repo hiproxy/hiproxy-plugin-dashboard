@@ -18,8 +18,8 @@ export default (props) => {
           <input className="form-input" type="text" placeholder="search" />
           <button className="btn btn-primary input-group-btn">Search</button>
         </div>*/}
-        <figure className="avatar badge" data-badge="8" data-initial="YZ">
-          <img src="./source/avatar-1.png" alt="YZ" />
+        <figure className="avatar" data-initial="Face">
+          <img src="./source/avatar-1.png" alt="Face" />
         </figure>
       </section>
     </header>

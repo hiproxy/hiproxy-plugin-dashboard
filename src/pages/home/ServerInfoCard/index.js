@@ -7,7 +7,7 @@ import './styles.less';
 
 export default ({data, pid}) => {
   let {title, port, listening, address} = data;
-  console.log('data:', data);
+
   return (
     <div className="card mr-10">
       <div className="card-header">
@@ -33,17 +33,21 @@ export default ({data, pid}) => {
           </li>
         </ul>
       </div>
-      <div className="card-footer">
-        <button className="btn btn-primary btn-sm">Restart</button>
-        <button className="btn btn-primary btn-sm">Stop</button>
-        <button className="btn btn-primary btn-sm" onClick={open}>Open Browser</button>
-      </div>
+      {
+        listening ? 
+        <div className="card-footer">
+          <button className="btn btn-primary btn-sm disabled">Restart</button>
+          <button className="btn btn-primary btn-sm disabled">Stop</button>
+          <button className="btn btn-primary btn-sm" onClick={open}>Open Browser</button>
+        </div> :
+        null  
+      }
     </div>
   )
 }
 
 function open () {
-  fetch('http://127.0.0.1:5525/api?action=open').then(function (res) {
+  fetch('http://127.0.0.1:' + window.serverInfo.httpServer.port + '/api?action=open').then(function (res) {
     console.log(res);
   }).catch(function (err) {
     console.log(err);

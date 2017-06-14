@@ -29,8 +29,8 @@ export default ({files, fileType}) => {
                 <td>{Object.keys(info).length} Domains</td>                
                 <td>{fileType}</td>
                 <td>
-                  <button className="btn">Editor</button>
-                  <button className="btn">Order</button>
+                  <button className="btn">Edit</button>
+                  <button className="btn disabled">Disable</button>
                 </td>          
               </tr>
             )
