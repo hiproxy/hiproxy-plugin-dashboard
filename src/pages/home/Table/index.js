@@ -4,6 +4,8 @@
  */
 
 import React from 'react';
+import Modal from '../../../components/Modal';
+
 import './styles.less';
 
 export default class extends React.Component {
@@ -11,6 +13,9 @@ export default class extends React.Component {
     super(props, state);
 
     this.state = {};
+
+    this.onModalClose = this.onModalClose.bind(this);
+    this.saveFile = this.saveFile.bind(this);
   }
 
   render () {
@@ -54,34 +59,27 @@ export default class extends React.Component {
   }
 
   renderDialog() {
-    let {fileInfo} = this.state;
+    let {fileInfo, fileType} = this.state;
 
     if (fileInfo) {
       let {status, message, data} = fileInfo;
 
       if (status === 0 && data.content) {
         return (
-          <div className="modal" style={{display: 'flex', zIndex: 400, opacity: 1}}>
-            <a href="javascript:;" onClick={this.hideDialog.bind(this)} className="modal-overlay" aria-label="Close"></a>
-            <div className="modal-container" role="document">
-              <div className="modal-header">
-                <a href="#modals" className="btn btn-clear float-right" aria-label="Close"></a>
-                <div className="modal-title">Modal title</div>
-              </div>
-              <div className="modal-body">
-                <div className="content">
-                  <pre ref={o => this.editor = o} style={{width: '600px'}} contentEditable className="editor">{data.content}</pre>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <a href="javascript:;" className="btn btn-link" onClick={this.hideDialog.bind(this)}>Close</a>
-                <button className="btn btn-primary" onClick={this.saveFile.bind(this)}>Save</button>
-              </div>
-            </div>
-          </div>
+          <Modal title={`Edit ${fileType} file`} btnHandler={this.saveFile} onClose={this.onModalClose} btnText="Save">
+            <pre 
+              ref={o => this.editor = o}
+              style={{width: '720px', maxHeight: '50vh', overflow: 'auto'}}
+              contentEditable="true"
+              suppressContentEditableWarning="true"
+              className="editor"
+            >
+              {data.content}
+            </pre>
+          </Modal>
         )
       } else {
-
+        return null;
       }
     }
   }
@@ -93,6 +91,7 @@ export default class extends React.Component {
     })
     .then(json => {
       this.setState({
+        fileType,
         fileInfo: json
       })
     })
@@ -103,7 +102,7 @@ export default class extends React.Component {
     });
   }
 
-  hideDialog(){
+  onModalClose(){
     this.setState({
       fileInfo: null
     })

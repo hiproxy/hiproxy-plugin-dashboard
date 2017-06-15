@@ -32457,6 +32457,10 @@ var _Editor = __webpack_require__(108);
 
 var _Editor2 = _interopRequireDefault(_Editor);
 
+var _Editor3 = __webpack_require__(275);
+
+var _Editor4 = _interopRequireDefault(_Editor3);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32525,6 +32529,7 @@ var Home = exports.Home = function (_React$Component) {
               pacFile
             )
           ) : null,
+          _react2.default.createElement(_Editor4.default, null),
           _react2.default.createElement(
             'div',
             { className: 'main' },
@@ -32979,6 +32984,10 @@ var _react = __webpack_require__(13);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Modal = __webpack_require__(258);
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
 __webpack_require__(251);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -33001,6 +33010,9 @@ var _class = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props, state));
 
     _this.state = {};
+
+    _this.onModalClose = _this.onModalClose.bind(_this);
+    _this.saveFile = _this.saveFile.bind(_this);
     return _this;
   }
 
@@ -33108,7 +33120,9 @@ var _class = function (_React$Component) {
     value: function renderDialog() {
       var _this3 = this;
 
-      var fileInfo = this.state.fileInfo;
+      var _state = this.state,
+          fileInfo = _state.fileInfo,
+          fileType = _state.fileType;
 
 
       if (fileInfo) {
@@ -33119,54 +33133,25 @@ var _class = function (_React$Component) {
 
         if (status === 0 && data.content) {
           return _react2.default.createElement(
-            'div',
-            { className: 'modal', style: { display: 'flex', zIndex: 400, opacity: 1 } },
-            _react2.default.createElement('a', { href: 'javascript:;', onClick: this.hideDialog.bind(this), className: 'modal-overlay', 'aria-label': 'Close' }),
+            _Modal2.default,
+            { title: 'Edit ' + fileType + ' file', btnHandler: this.saveFile, onClose: this.onModalClose, btnText: 'Save' },
             _react2.default.createElement(
-              'div',
-              { className: 'modal-container', role: 'document' },
-              _react2.default.createElement(
-                'div',
-                { className: 'modal-header' },
-                _react2.default.createElement('a', { href: '#modals', className: 'btn btn-clear float-right', 'aria-label': 'Close' }),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'modal-title' },
-                  'Modal title'
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'modal-body' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'content' },
-                  _react2.default.createElement(
-                    'pre',
-                    { ref: function ref(o) {
-                        return _this3.editor = o;
-                      }, style: { width: '600px' }, contentEditable: true, className: 'editor' },
-                    data.content
-                  )
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'modal-footer' },
-                _react2.default.createElement(
-                  'a',
-                  { href: 'javascript:;', className: 'btn btn-link', onClick: this.hideDialog.bind(this) },
-                  'Close'
-                ),
-                _react2.default.createElement(
-                  'button',
-                  { className: 'btn btn-primary', onClick: this.saveFile.bind(this) },
-                  'Save'
-                )
-              )
+              'pre',
+              {
+                ref: function ref(o) {
+                  return _this3.editor = o;
+                },
+                style: { width: '720px', maxHeight: '50vh', overflow: 'auto' },
+                contentEditable: 'true',
+                suppressContentEditableWarning: 'true',
+                className: 'editor'
+              },
+              data.content
             )
           );
-        } else {}
+        } else {
+          return null;
+        }
       }
     }
   }, {
@@ -33178,6 +33163,7 @@ var _class = function (_React$Component) {
         return res.json();
       }).then(function (json) {
         _this4.setState({
+          fileType: fileType,
           fileInfo: json
         });
       }).catch(function (err) {
@@ -33187,8 +33173,8 @@ var _class = function (_React$Component) {
       });
     }
   }, {
-    key: 'hideDialog',
-    value: function hideDialog() {
+    key: 'onModalClose',
+    value: function onModalClose() {
       this.setState({
         fileInfo: null
       });
@@ -34504,7 +34490,7 @@ exports = module.exports = __webpack_require__(20)(undefined);
 
 
 // module
-exports.push([module.i, ".table th {\n  border-bottom: 1px solid #E7E7E7;\n  text-transform: capitalize;\n  font-size: 16px;\n  font-weight: 400;\n}\n.table tr {\n  height: 70px;\n}\n.table td {\n  font-size: 16px;\n}\n.table td .btn {\n  margin-right: 10px;\n  border-color: #88C8ED;\n  color: #4F4F4F;\n  border-radius: 19px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-weight: 200;\n}\n.table td .btn:hover {\n  background-color: #88C8ED;\n  color: white;\n}\n.table td .btn:last-child {\n  margin-right: 0;\n}\n.table .editor {\n  width: 600px;\n  outline: 0;\n  background: #f8f9fa;\n  border-radius: 3px;\n  padding: 5px;\n  margin: 0;\n}\n", ""]);
+exports.push([module.i, ".table th {\n  border-bottom: 1px solid #E7E7E7;\n  text-transform: capitalize;\n  font-size: 16px;\n  font-weight: 400;\n}\n.table tr {\n  height: 70px;\n}\n.table td {\n  font-size: 16px;\n}\n.table td .btn {\n  margin-right: 10px;\n  border-color: #88C8ED;\n  color: #4F4F4F;\n  border-radius: 19px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-weight: 200;\n}\n.table td .btn:hover {\n  background-color: #88C8ED;\n  color: white;\n}\n.table td .btn:last-child {\n  margin-right: 0;\n}\n.editor {\n  width: 600px;\n  outline: 0;\n  background: #f8f9fa;\n  border-radius: 3px;\n  padding: 5px;\n  margin: 0;\n}\n.modal-overlay {\n  background: rgba(69, 77, 93, 0.5);\n  bottom: 0;\n  cursor: default;\n  display: block;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n.modal-container {\n  animation: slide-down 0.2s ease 1;\n  max-width: 64rem;\n  z-index: 1;\n}\n", ""]);
 
 // exports
 
@@ -34518,7 +34504,7 @@ exports = module.exports = __webpack_require__(20)(undefined);
 
 
 // module
-exports.push([module.i, ".home-page {\n  padding: 0;\n  flex-direction: row;\n  display: flex;\n  flex: 1;\n}\n.header-title {\n  font-size: 26px;\n}\nh1 {\n  font-size: 26px;\n  padding: 0;\n  margin: 0;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  display: flex;\n}\n.side-bar {\n  width: 225px;\n  background-color: #32393E;\n}\n.side-bar .logo {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  padding: 15px 0 0 0;\n}\n.side-bar .logo img {\n  width: 60px;\n  height: 60px;\n}\n.side-bar .logo h1 {\n  font-weight: 300;\n  font-size: 25px;\n  margin: 0 10px;\n  color: white;\n}\n.menu {\n  margin: 0;\n  padding: 0;\n  background-color: transparent;\n}\n.menu .menu-item {\n  list-style: none;\n  padding: 0.5rem 1rem;\n}\n.menu .menu-item a {\n  color: #B3B4B8;\n}\n.menu .menu-item .icon {\n  margin-right: 10px;\n}\n.cards {\n  display: flex;\n  flex-direction: row;\n}\n.body {\n  padding: 0;\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n.main {\n  flex: 1;\n  padding: 0 10px 10px;\n  overflow: scroll;\n}\n.main .table-header {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin-top: 30px;\n  margin-bottom: -5px;\n  padding-left: 1rem;\n}\n.main .table-header h5 {\n  font-weight: 500;\n  margin: 0;\n  padding: 0;\n}\n", ""]);
+exports.push([module.i, ".home-page {\n  padding: 0;\n  flex-direction: row;\n  display: flex;\n  flex: 1;\n}\n.header-title {\n  font-size: 26px;\n}\nh1 {\n  font-size: 26px;\n  padding: 0;\n  margin: 0;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  display: flex;\n}\n.side-bar {\n  width: 225px;\n  background-color: #32393E;\n}\n.side-bar .logo {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n  padding: 15px 0 0 0;\n}\n.side-bar .logo img {\n  width: 60px;\n  height: 60px;\n}\n.side-bar .logo h1 {\n  font-weight: 300;\n  font-size: 25px;\n  margin: 0 10px;\n  color: white;\n}\n.menu {\n  margin: 0;\n  padding: 0;\n  background-color: transparent;\n}\n.menu .menu-item {\n  list-style: none;\n  padding: 0.5rem 1rem;\n}\n.menu .menu-item a {\n  color: #B3B4B8;\n}\n.menu .menu-item .icon {\n  margin-right: 10px;\n}\n.cards {\n  display: flex;\n  flex-direction: row;\n}\n.body {\n  padding: 0;\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n}\n.main {\n  flex: 1;\n  padding: 0 10px 10px;\n  overflow: auto;\n}\n.main .table-header {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  margin-top: 30px;\n  margin-bottom: -5px;\n  padding-left: 1rem;\n}\n.main .table-header h5 {\n  font-weight: 500;\n  margin: 0;\n  padding: 0;\n}\n", ""]);
 
 // exports
 
@@ -49852,6 +49838,386 @@ function get_blob() {
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+
+/***/ }),
+/* 258 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * @file
+ * @author zdying
+ */
+
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(13);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(260);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Modal = function (_React$Component) {
+  _inherits(Modal, _React$Component);
+
+  function Modal(props, state) {
+    _classCallCheck(this, Modal);
+
+    var _this = _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).call(this, props, state));
+
+    _this.hideDialog = _this.hideDialog.bind(_this);
+
+    _this.state = {
+      isShow: true
+    };
+    return _this;
+  }
+
+  _createClass(Modal, [{
+    key: 'render',
+    value: function render() {
+      var isShow = this.state.isShow;
+      var _props = this.props,
+          children = _props.children,
+          title = _props.title,
+          btnText = _props.btnText,
+          btnHandler = _props.btnHandler,
+          onClose = _props.onClose;
+
+
+      console.log('isShow===>', isShow);
+
+      if (!isShow) {
+        return null;
+      }
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'modal', style: { display: 'flex', zIndex: 400, opacity: 1 } },
+        _react2.default.createElement('a', { href: 'javascript:;', onClick: this.hideDialog, className: 'modal-overlay', 'aria-label': 'Close' }),
+        _react2.default.createElement(
+          'div',
+          { className: 'modal-container', role: 'document' },
+          _react2.default.createElement(
+            'div',
+            { className: 'modal-header' },
+            _react2.default.createElement('a', { href: 'javascript:;', className: 'btn btn-clear float-right', 'aria-label': 'Close', onClick: this.hideDialog }),
+            _react2.default.createElement(
+              'div',
+              { className: 'modal-title' },
+              title
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'modal-body' },
+            _react2.default.createElement(
+              'div',
+              { className: 'content' },
+              children
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'modal-footer' },
+            _react2.default.createElement(
+              'a',
+              { href: 'javascript:;', className: 'btn btn-link', onClick: this.hideDialog },
+              'Close'
+            ),
+            _react2.default.createElement(
+              'button',
+              { className: 'btn btn-primary', onClick: btnHandler },
+              btnText
+            )
+          )
+        )
+      );
+    }
+  }, {
+    key: 'hideDialog',
+    value: function hideDialog() {
+      this.setState({
+        isShow: false
+      });
+
+      this.props.onClose && this.props.onClose();
+    }
+  }]);
+
+  return Modal;
+}(_react2.default.Component);
+
+exports.default = Modal;
+
+/***/ }),
+/* 259 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(20)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".modal-container .modal-body {\n  padding: 0 1.5rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 260 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(259);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(26)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/less-loader/dist/index.js!./style.less", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/less-loader/dist/index.js!./style.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * @file
+ * @author zdying
+ */
+
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(13);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(277);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Modal = function (_React$Component) {
+  _inherits(Modal, _React$Component);
+
+  function Modal(props, state) {
+    _classCallCheck(this, Modal);
+
+    var _this = _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).call(this, props, state));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(Modal, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.initEditor();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props$lang = this.props.lang,
+          lang = _props$lang === undefined ? 'hosts' : _props$lang;
+
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'con' },
+        _react2.default.createElement('textarea', { ref: function ref(o) {
+            return _this2.editor = o;
+          }, defaultValue: '', className: 'editor' }),
+        _react2.default.createElement('pre', { ref: function ref(o) {
+            return _this2.pre = o;
+          }, className: 'pre' }),
+        _react2.default.createElement('div', { ref: function ref(o) {
+            return _this2.line = o;
+          }, className: 'line' })
+      );
+    }
+  }, {
+    key: 'highlight',
+    value: function highlight(str) {
+      var colors = ['#C299D6', '#D9854A', '#00BCD4', '#B7C753', 'red', '#969896'];
+      var reg = /(var|let|const|this|new|return|function|Math|Object|String)|(true|false)|([\w_][\w\d_]{0,}(?=\())|([\"'].*?[\"'])|([+-]?\d+(?:\.\d+)?)|(\/\/.*|\/\*[\s\S]*?\*\/)/g;
+      var res = str.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(reg, function (match) {
+        var args = [].slice.call(arguments, 1);
+        var index = args.indexOf(match);
+
+        if (args[index + 1]) {
+          console.log(args[index], args[index + 1]);
+          return match.replace(args[index + 1], '<span style="color:' + colors[index] + '">' + args[index + 1] + '</span>');
+        } else {
+          return '<span style="color:' + colors[index] + '">' + match + '</span>';
+        }
+      });
+
+      return res;
+    }
+  }, {
+    key: 'initEditor',
+    value: function initEditor() {
+      var _this3 = this;
+
+      var pre = this.pre;
+      var editor = this.editor;
+      var line = this.line;
+
+      pre.innerHTML = this.highlight(editor.value);
+      this.addLine();
+
+      editor.addEventListener('input', function (eve) {
+        pre.innerHTML = _this3.highlight(editor.value);
+        _this3.addLine();
+      });
+
+      editor.addEventListener('scroll', function (eve) {
+        // pre.scrollTop = editor.scrollTop
+        pre.style.top = '-' + Math.floor(editor.scrollTop) + 'px';
+        line.style.top = '-' + Math.floor(editor.scrollTop) + 'px';
+      });
+
+      editor.addEventListener('keydown', function (eve) {
+        var code = eve.keyCode;
+        var start = editor.selectionStart;
+        var end = editor.selectionEnd;
+        var value = editor.value;
+
+        if (code === 9) {
+          editor.value = value.slice(0, start) + '    ' + value.slice(end);
+          editor.selectionStart = editor.selectionEnd = start + 4;
+          eve.preventDefault();
+        }
+      });
+    }
+  }, {
+    key: 'addLine',
+    value: function addLine() {
+      var editor = this.editor;
+      var pre = this.pre;
+      var line = this.line;
+      var text = editor.value;
+      var lines = text.split('\n');
+      var arr = lines.map(function (line, index) {
+        return index + 1;
+      });
+
+      line.innerHTML = '<div>' + arr.join('</div><div>') + '</div>';
+      pre.style.top = '-' + Math.floor(editor.scrollTop) + 'px';
+      line.style.top = '-' + Math.floor(editor.scrollTop) + 'px';
+    }
+  }]);
+
+  return Modal;
+}(_react2.default.Component);
+
+exports.default = Modal;
+;
+
+/***/ }),
+/* 276 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(20)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".con {\n  width: 100%;\n  height: 100%;\n  /*border: 1px solid red;*/\n  padding: 0 0 0 40px;\n  background: #2B2B2B;\n  overflow: scroll;\n  box-sizing: border-box;\n}\n.editor,\n.pre,\n.line {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  padding: 0 0 0 40px;\n  margin: 0;\n  font-size: 13px;\n  line-height: 1.4;\n  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;\n  box-sizing: border-box;\n  background: transparent;\n  outline: none;\n  border: none;\n  white-space: pre-wrap;\n  word-wrap: break-word;\n}\n.editor {\n  z-index: 1;\n  resize: none;\n  outline: none;\n  opacity: 0.8;\n  tab-size: 4;\n  color: #FFFFFF;\n  /* change [input cursor color] by this*/\n  /*text-shadow: 0px 0px 0px #D60B0B; !* change [input font] by this*!*/\n  text-shadow: transparent;\n  -webkit-text-fill-color: transparent;\n}\n.editor::selection {\n  background: red;\n}\n.pre {\n  z-index: 2;\n  border-color: orange;\n  pointer-events: none;\n  color: white;\n}\n.line {\n  z-index: 2;\n  padding: 0 5px;\n  box-sizing: border-box;\n  width: 35px;\n  color: white;\n  text-align: right;\n  border-right: 1px solid #555555;\n  display: inline-block;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 277 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(276);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(26)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/less-loader/dist/index.js!./style.less", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/less-loader/dist/index.js!./style.less");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);

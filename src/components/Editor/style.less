@@ -1,0 +1,63 @@
+.con{
+    width: 100%;
+    height: 100%;
+    /*border: 1px solid red;*/
+    padding: 0 0 0 40px;
+    background: #2B2B2B;
+    overflow: scroll;
+    box-sizing: border-box;
+}
+
+.editor, .pre, .line{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 0 0 40px;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.4;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    box-sizing: border-box;
+    background: transparent;
+    outline: none;
+    border: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.editor{
+    z-index: 1;
+    resize: none;
+    outline: none;
+    opacity: 0.8;
+    tab-size: 4;
+
+    color: #FFFFFF;  /* change [input cursor color] by this*/
+    /*text-shadow: 0px 0px 0px #D60B0B; !* change [input font] by this*!*/
+    text-shadow: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.editor::selection{
+    background: red;
+}
+
+.pre{
+    z-index: 2;
+    border-color: orange;
+    pointer-events: none;
+    color: white;
+}
+
+.line{
+    z-index: 2;
+    padding: 0 5px;
+    box-sizing: border-box;
+    width: 35px;
+    color: white;
+    text-align: right;
+    border-right: 1px solid #555555;
+    display: inline-block;
+}

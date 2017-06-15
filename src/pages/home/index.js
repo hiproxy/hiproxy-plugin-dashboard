@@ -23,6 +23,7 @@ import ServerInfoCard from './ServerInfoCard';
 import Table from './Table';
 import Header from './Header';
 import Editor from './Editor';
+import SimpleEditor from '../../components/Editor';
 
 export class Home extends React.Component {
   constructor (props) {
@@ -61,6 +62,7 @@ export class Home extends React.Component {
             </div> :
             null
           }
+          <SimpleEditor />
           <div className="main">
             <div className="cards mt-10">
               <ServerInfoCard data={serverInfo.httpServer} pid={serverInfo.pid}/>
