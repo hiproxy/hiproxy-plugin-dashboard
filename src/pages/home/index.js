@@ -62,7 +62,7 @@ export class Home extends React.Component {
             </div> :
             null
           }
-          <SimpleEditor />
+          {/*<SimpleEditor />*/}
           <div className="main">
             <div className="cards mt-10">
               <ServerInfoCard data={serverInfo.httpServer} pid={serverInfo.pid}/>

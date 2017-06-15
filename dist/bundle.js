@@ -32529,7 +32529,6 @@ var Home = exports.Home = function (_React$Component) {
               pacFile
             )
           ) : null,
-          _react2.default.createElement(_Editor4.default, null),
           _react2.default.createElement(
             'div',
             { className: 'main' },
