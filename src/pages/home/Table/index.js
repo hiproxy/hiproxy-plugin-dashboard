@@ -5,7 +5,7 @@
 
 import React from 'react';
 import Modal from '../../../components/Modal';
-
+import SimpleEditor from '../../../components/Editor';
 import './styles.less';
 
 export default class extends React.Component {
@@ -67,7 +67,7 @@ export default class extends React.Component {
       if (status === 0 && data.content) {
         return (
           <Modal title={`Edit ${fileType} file`} btnHandler={this.saveFile} onClose={this.onModalClose} btnText="Save">
-            <pre 
+            {/*<pre 
               ref={o => this.editor = o}
               style={{width: '720px', maxHeight: '50vh', overflow: 'auto'}}
               contentEditable="true"
@@ -75,7 +75,10 @@ export default class extends React.Component {
               className="editor"
             >
               {data.content}
-            </pre>
+            </pre>*/}
+            <div style={{width: '720px', maxHeight: '50vh', overflow: 'auto'}}>
+              <SimpleEditor value={data.content} />
+            </div>
           </Modal>
         )
       } else {

@@ -22,11 +22,11 @@ export default class Modal extends React.Component {
   }
 
   render () {
-    let {lang='hosts'} = this.props;
+    let {lang='hosts', value} = this.props;
 
     return (
       <div className="con">
-        <textarea ref={o => this.editor = o} defaultValue={''} className="editor"></textarea>
+        <textarea ref={o => this.editor = o} defaultValue={value} className="editor"></textarea>
         <pre ref={o => this.pre = o} className="pre"></pre>
         <div ref={o => this.line = o} className="line"></div>
       </div>
