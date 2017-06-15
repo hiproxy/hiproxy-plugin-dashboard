@@ -32772,17 +32772,17 @@ var Modal = function (_React$Component) {
     key: 'highlight',
     value: function highlight(str) {
       var colors = ['#C299D6', '#D9854A', '#00BCD4', '#B7C753', 'red', '#969896'];
-      var reg = /(var|let|const|this|new|return|function|Math|Object|String)|(true|false)|([\w_][\w\d_]{0,}(?=\())|([\"'].*?[\"'])|([+-]?\d+(?:\.\d+)?)|(\/\/.*|\/\*[\s\S]*?\*\/)/g;
+      var reg = /(domain|location)|(set_header|set_cookie|proxy_pass|proxy_set_header|proxy_hide_header|hide_header|set)|(https?:\/\/[^\s]+)|([\"'].*?[\"'])|([+-]?\d+(?:\.\d+)?)|(#[^\r\n]*)/g;
       var res = str.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(reg, function (match) {
         var args = [].slice.call(arguments, 1);
         var index = args.indexOf(match);
 
-        if (args[index + 1]) {
-          console.log(args[index], args[index + 1]);
-          return match.replace(args[index + 1], '<span style="color:' + colors[index] + '">' + args[index + 1] + '</span>');
-        } else {
-          return '<span style="color:' + colors[index] + '">' + match + '</span>';
-        }
+        // if (args[index + 1]) {
+        //   console.log(match, args[index], args[index + 1]);
+        //   return match.replace(args[index + 1], '<span style="color:' + colors[index] + '">' + args[index + 1] + '</span>');
+        // }else {
+        return '<span style="color:' + colors[index] + '">' + match + '</span>';
+        // }
       });
 
       return res;
@@ -33395,6 +33395,8 @@ var _class = function (_React$Component) {
   }, {
     key: 'renderDialog',
     value: function renderDialog() {
+      var _this3 = this;
+
       var _state = this.state,
           fileInfo = _state.fileInfo,
           fileType = _state.fileType;
@@ -33406,14 +33408,16 @@ var _class = function (_React$Component) {
             data = fileInfo.data;
 
 
-        if (status === 0 && data.content) {
+        if (status === 0) {
           return _react2.default.createElement(
             _Modal2.default,
             { title: 'Edit ' + fileType + ' file', btnHandler: this.saveFile, onClose: this.onModalClose, btnText: 'Save' },
             _react2.default.createElement(
               'div',
-              { style: { width: '720px', maxHeight: '50vh', overflow: 'auto' } },
-              _react2.default.createElement(_Editor2.default, { value: data.content })
+              { style: { width: '720px', height: '50vh', overflow: 'auto' } },
+              _react2.default.createElement(_Editor2.default, { ref: function ref(o) {
+                  return _this3.editor = o;
+                }, value: data.content || '' })
             )
           );
         } else {
@@ -33424,17 +33428,17 @@ var _class = function (_React$Component) {
   }, {
     key: 'editFile',
     value: function editFile(file, fileType) {
-      var _this3 = this;
+      var _this4 = this;
 
       fetch('/dashboard/api/readFile?file=' + file).then(function (res) {
         return res.json();
       }).then(function (json) {
-        _this3.setState({
+        _this4.setState({
           fileType: fileType,
           fileInfo: json
         });
       }).catch(function (err) {
-        _this3.setState({
+        _this4.setState({
           fileInfo: err
         });
       });
@@ -33449,9 +33453,9 @@ var _class = function (_React$Component) {
   }, {
     key: 'saveFile',
     value: function saveFile(file) {
-      var _this4 = this;
+      var _this5 = this;
 
-      var content = this.editor.innerText;
+      var content = this.editor.editor.value;
       fetch('/dashboard/api/saveFile', {
         method: 'POST',
         headers: {
@@ -33462,11 +33466,11 @@ var _class = function (_React$Component) {
           content: content
         })
       }).then(function (json) {
-        _this4.setState({
+        _this5.setState({
           fileInfo: null
         });
       }).catch(function (err) {
-        _this4.setState({
+        _this5.setState({
           fileInfo: err
         });
       });
@@ -34715,7 +34719,7 @@ exports = module.exports = __webpack_require__(14)(undefined);
 
 
 // module
-exports.push([module.i, ".con {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  /*border: 1px solid red;*/\n  padding: 0 0 0 40px;\n  background: #2B2B2B;\n  overflow: scroll;\n  box-sizing: border-box;\n}\n.editor,\n.pre,\n.line {\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  font-size: 13px;\n  line-height: 1.4;\n  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;\n  box-sizing: border-box;\n  background: transparent;\n  outline: none;\n  border: none;\n  white-space: pre-wrap;\n  word-wrap: break-word;\n}\n.editor {\n  position: absolute;\n  left: 38px;\n  top: -2px;\n  width: 100%;\n  z-index: 1;\n  resize: none;\n  outline: none;\n  opacity: 0.8;\n  tab-size: 4;\n  color: #FFFFFF;\n  /* change [input cursor color] by this*/\n  /*text-shadow: 0px 0px 0px #D60B0B; !* change [input font] by this*!*/\n  text-shadow: transparent;\n  -webkit-text-fill-color: transparent;\n}\n.editor::selection {\n  background: red;\n}\n.pre {\n  z-index: 2;\n  border-color: orange;\n  pointer-events: none;\n  color: white;\n}\n.line {\n  position: absolute;\n  left: 0;\n  top: 0;\n  z-index: 2;\n  padding: 0 5px;\n  box-sizing: border-box;\n  width: 35px;\n  color: white;\n  text-align: right;\n  border-right: 1px solid #555555;\n  display: inline-block;\n}\n", ""]);
+exports.push([module.i, ".con {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  /*border: 1px solid red;*/\n  padding: 0 0 0 40px;\n  background: #2B2B2B;\n  overflow: scroll;\n  box-sizing: border-box;\n}\n.editor,\n.pre,\n.line {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  padding: 0 0 0 40px;\n  margin: 0;\n  font-size: 13px;\n  line-height: 1.4;\n  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;\n  box-sizing: border-box;\n  background: transparent;\n  outline: none;\n  border: none;\n  white-space: pre-wrap;\n  word-wrap: break-word;\n}\n.editor {\n  z-index: 1;\n  resize: none;\n  outline: none;\n  opacity: 0.8;\n  tab-size: 4;\n  color: #FFFFFF;\n  /* change [input cursor color] by this*/\n  /*text-shadow: 0px 0px 0px #D60B0B; !* change [input font] by this*!*/\n  text-shadow: transparent;\n  -webkit-text-fill-color: transparent;\n}\n.editor::selection {\n  background: red;\n}\n.pre {\n  z-index: 2;\n  border-color: orange;\n  pointer-events: none;\n  color: white;\n}\n.line {\n  z-index: 2;\n  padding: 0 5px;\n  box-sizing: border-box;\n  width: 35px;\n  color: white;\n  text-align: right;\n  border-right: 1px solid #555555;\n  display: inline-block;\n}\n", ""]);
 
 // exports
 

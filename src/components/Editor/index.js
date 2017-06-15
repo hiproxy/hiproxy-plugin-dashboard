@@ -35,7 +35,7 @@ export default class Modal extends React.Component {
 
   highlight (str) {
     var colors = ['#C299D6', '#D9854A', '#00BCD4', '#B7C753', 'red', '#969896'];
-    var reg = /(var|let|const|this|new|return|function|Math|Object|String)|(true|false)|([\w_][\w\d_]{0,}(?=\())|([\"'].*?[\"'])|([+-]?\d+(?:\.\d+)?)|(\/\/.*|\/\*[\s\S]*?\*\/)/g;
+    var reg = /(domain|location)|(set_header|set_cookie|proxy_pass|proxy_set_header|proxy_hide_header|hide_header|set)|(https?:\/\/[^\s]+)|([\"'].*?[\"'])|([+-]?\d+(?:\.\d+)?)|(#[^\r\n]*)/g;
     var res = str
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
@@ -43,12 +43,12 @@ export default class Modal extends React.Component {
         var args = [].slice.call(arguments, 1);
         var index = args.indexOf(match);
 
-        if (args[index + 1]) {
-          console.log(args[index], args[index + 1]);
-          return match.replace(args[index + 1], '<span style="color:' + colors[index] + '">' + args[index + 1] + '</span>');
-        }else {
+        // if (args[index + 1]) {
+        //   console.log(match, args[index], args[index + 1]);
+        //   return match.replace(args[index + 1], '<span style="color:' + colors[index] + '">' + args[index + 1] + '</span>');
+        // }else {
           return '<span style="color:' + colors[index] + '">' + match + '</span>';
-        }
+        // }
       });
 
     return res;

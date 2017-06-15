@@ -64,7 +64,7 @@ export default class extends React.Component {
     if (fileInfo) {
       let {status, message, data} = fileInfo;
 
-      if (status === 0 && data.content) {
+      if (status === 0) {
         return (
           <Modal title={`Edit ${fileType} file`} btnHandler={this.saveFile} onClose={this.onModalClose} btnText="Save">
             {/*<pre 
@@ -76,8 +76,8 @@ export default class extends React.Component {
             >
               {data.content}
             </pre>*/}
-            <div style={{width: '720px', maxHeight: '50vh', overflow: 'auto'}}>
-              <SimpleEditor value={data.content} />
+            <div style={{width: '720px', height: '50vh', overflow: 'auto'}}>
+              <SimpleEditor ref={o => this.editor = o} value={data.content || ''} />
             </div>
           </Modal>
         )
@@ -112,7 +112,7 @@ export default class extends React.Component {
   }
 
   saveFile(file){
-    let content = this.editor.innerText;
+    let content = this.editor.editor.value;
     fetch('/dashboard/api/saveFile', {
       method: 'POST',
       headers: {
