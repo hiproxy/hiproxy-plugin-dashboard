@@ -32710,6 +32710,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(11);
@@ -32751,15 +32753,17 @@ var Modal = function (_React$Component) {
       var _props = this.props,
           _props$lang = _props.lang,
           lang = _props$lang === undefined ? 'hosts' : _props$lang,
-          value = _props.value;
+          value = _props.value,
+          disabled = _props.disabled;
 
+      var props = disabled === true ? { disabled: true } : {};
 
       return _react2.default.createElement(
         'div',
         { className: 'con' },
-        _react2.default.createElement('textarea', { ref: function ref(o) {
+        _react2.default.createElement('textarea', _extends({ ref: function ref(o) {
             return _this2.editor = o;
-          }, defaultValue: value, className: 'editor' }),
+          } }, props, { defaultValue: value, className: 'editor' })),
         _react2.default.createElement('pre', { ref: function ref(o) {
             return _this2.pre = o;
           }, className: 'pre' }),
@@ -32904,10 +32908,9 @@ var Modal = function (_React$Component) {
           title = _props.title,
           btnText = _props.btnText,
           btnHandler = _props.btnHandler,
-          onClose = _props.onClose;
+          onClose = _props.onClose,
+          showOKBtn = _props.showOKBtn;
 
-
-      console.log('isShow===>', isShow);
 
       if (!isShow) {
         return null;
@@ -32947,11 +32950,11 @@ var Modal = function (_React$Component) {
               { href: 'javascript:;', className: 'btn btn-link', onClick: this.hideDialog },
               'Close'
             ),
-            _react2.default.createElement(
+            showOKBtn ? _react2.default.createElement(
               'button',
               { className: 'btn btn-primary', onClick: btnHandler },
               btnText
-            )
+            ) : null
           )
         )
       );
@@ -33376,13 +33379,13 @@ var _class = function (_React$Component) {
                   null,
                   _react2.default.createElement(
                     'button',
-                    { className: 'btn', onClick: _this2.editFile.bind(_this2, file, fileType) },
-                    'Edit'
+                    { className: 'btn', onClick: _this2.editFile.bind(_this2, file, fileType, true) },
+                    'View'
                   ),
                   _react2.default.createElement(
                     'button',
-                    { className: 'btn disabled' },
-                    'Disable'
+                    { className: 'btn', onClick: _this2.editFile.bind(_this2, file, fileType, false) },
+                    'Edit'
                   )
                 )
               );
@@ -33399,7 +33402,8 @@ var _class = function (_React$Component) {
 
       var _state = this.state,
           fileInfo = _state.fileInfo,
-          fileType = _state.fileType;
+          fileType = _state.fileType,
+          disabled = _state.disabled;
 
 
       if (fileInfo) {
@@ -33411,13 +33415,13 @@ var _class = function (_React$Component) {
         if (status === 0) {
           return _react2.default.createElement(
             _Modal2.default,
-            { title: 'Edit ' + fileType + ' file', btnHandler: this.saveFile, onClose: this.onModalClose, btnText: 'Save' },
+            { title: 'Edit ' + fileType + ' file', btnHandler: this.saveFile, onClose: this.onModalClose, btnText: 'Save', showOKBtn: !disabled },
             _react2.default.createElement(
               'div',
               { style: { width: '720px', height: '50vh', overflow: 'auto' } },
               _react2.default.createElement(_Editor2.default, { ref: function ref(o) {
                   return _this3.editor = o;
-                }, value: data.content || '' })
+                }, value: data.content || '', disabled: disabled })
             )
           );
         } else {
@@ -33427,7 +33431,7 @@ var _class = function (_React$Component) {
     }
   }, {
     key: 'editFile',
-    value: function editFile(file, fileType) {
+    value: function editFile(file, fileType, disabled) {
       var _this4 = this;
 
       fetch('/dashboard/api/readFile?file=' + file).then(function (res) {
@@ -33435,7 +33439,8 @@ var _class = function (_React$Component) {
       }).then(function (json) {
         _this4.setState({
           fileType: fileType,
-          fileInfo: json
+          fileInfo: json,
+          disabled: disabled
         });
       }).catch(function (err) {
         _this4.setState({

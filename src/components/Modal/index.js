@@ -22,9 +22,7 @@ export default class Modal extends React.Component {
 
   render () {
     let {isShow} = this.state;
-    let {children, title, btnText, btnHandler, onClose} = this.props;
-
-    console.log('isShow===>', isShow);
+    let {children, title, btnText, btnHandler, onClose, showOKBtn} = this.props;
 
     if (!isShow) {
       return null;
@@ -47,7 +45,7 @@ export default class Modal extends React.Component {
 
           <div className="modal-footer">
             <a href="javascript:;" className="btn btn-link" onClick={this.hideDialog}>Close</a>
-            <button className="btn btn-primary" onClick={btnHandler}>{btnText}</button>
+            {showOKBtn ? <button className="btn btn-primary" onClick={btnHandler}>{btnText}</button>: null}
           </div>
         </div>
       </div>

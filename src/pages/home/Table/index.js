@@ -44,8 +44,9 @@ export default class extends React.Component {
                     <td>{Object.keys(info).length} Domains</td>                
                     <td>{fileType}</td>
                     <td>
-                      <button className="btn" onClick={this.editFile.bind(this, file, fileType)}>Edit</button>
-                      <button className="btn disabled">Disable</button>
+                      <button className="btn" onClick={this.editFile.bind(this, file, fileType, true)}>View</button>                      
+                      <button className="btn" onClick={this.editFile.bind(this, file, fileType, false)}>Edit</button>
+                      {/*<button className="btn disabled">Disable</button>*/}
                     </td>          
                   </tr>
                 )
@@ -59,25 +60,16 @@ export default class extends React.Component {
   }
 
   renderDialog() {
-    let {fileInfo, fileType} = this.state;
+    let {fileInfo, fileType, disabled} = this.state;
 
     if (fileInfo) {
       let {status, message, data} = fileInfo;
 
       if (status === 0) {
         return (
-          <Modal title={`Edit ${fileType} file`} btnHandler={this.saveFile} onClose={this.onModalClose} btnText="Save">
-            {/*<pre 
-              ref={o => this.editor = o}
-              style={{width: '720px', maxHeight: '50vh', overflow: 'auto'}}
-              contentEditable="true"
-              suppressContentEditableWarning="true"
-              className="editor"
-            >
-              {data.content}
-            </pre>*/}
+          <Modal title={`Edit ${fileType} file`} btnHandler={this.saveFile} onClose={this.onModalClose} btnText="Save" showOKBtn={!disabled}>
             <div style={{width: '720px', height: '50vh', overflow: 'auto'}}>
-              <SimpleEditor ref={o => this.editor = o} value={data.content || ''} />
+              <SimpleEditor ref={o => this.editor = o} value={data.content || ''} disabled={disabled} />
             </div>
           </Modal>
         )
@@ -87,7 +79,7 @@ export default class extends React.Component {
     }
   }
 
-  editFile(file, fileType) {
+  editFile(file, fileType, disabled) {
     fetch('/dashboard/api/readFile?file=' + file)
     .then(res => {
       return res.json();
@@ -95,7 +87,8 @@ export default class extends React.Component {
     .then(json => {
       this.setState({
         fileType,
-        fileInfo: json
+        fileInfo: json,
+        disabled: disabled
       })
     })
     .catch(err => {
