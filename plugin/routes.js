@@ -35,9 +35,6 @@ module.exports = [
         listening: false
       };
 
-      console.log('page name ', pageName);
-      
-
       if (pageName === 'index.html') {
         data = hiServer ? {
           hosts: hiServer.hosts._files,
@@ -140,7 +137,6 @@ function doAction (pageName, req, res) {
       body += _data;
     });
     req.on('end', function () {
-      console.log('body ==>', body);
       if (req.headers['content-type'].indexOf('application/json') !== -1){
         body = JSON.parse(body);
       }
