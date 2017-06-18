@@ -33366,7 +33366,7 @@ var _class = function (_React$Component) {
                 _react2.default.createElement(
                   'td',
                   null,
-                  Object.keys(info).length,
+                  Object.keys(fileType === 'hosts' ? info : info.domains).length,
                   ' Domains'
                 ),
                 _react2.default.createElement(

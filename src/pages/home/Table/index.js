@@ -41,7 +41,7 @@ export default class extends React.Component {
                   <tr className="" key={file}>
                     <td className="color-blue">{file}</td>
                     <td>Working</td>
-                    <td>{Object.keys(info).length} Domains</td>                
+                    <td>{Object.keys(fileType === 'hosts' ? info : info.domains).length} Domains</td>                
                     <td>{fileType}</td>
                     <td>
                       <button className="btn" onClick={this.editFile.bind(this, file, fileType, true)}>View</button>                      
