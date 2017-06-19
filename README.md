@@ -1,6 +1,8 @@
 # hiproxy-plugin-dashboard
 hiproxy dashboard plugin to manage your projects config and services
 
+<img src="https://raw.githubusercontent.com/hiproxy/hiproxy-plugin-dashboard/master/dashboard.png" />
+
 ## Usage
 
 ### install
@@ -22,6 +24,7 @@ hiproxy start
 
 ```bash
 npm install
+npm link
 webpack -w
 ```
 
