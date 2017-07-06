@@ -8,7 +8,7 @@ hiproxy dashboard plugin to manage your projects config and services
 ### install
 
 ```bash
-npm install hiproxy/hiproxy-plugin-dashboard -g
+npm install hiproxy-plugin-dashboard -g
 ```
 
 ### start server
