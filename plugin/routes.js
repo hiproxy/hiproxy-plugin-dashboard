@@ -40,13 +40,13 @@ module.exports = [
           hosts: hiServer.hosts._files,
           rewrites: hiServer.rewrite._files,
           httpServer: {
-            title: 'hiproxy http server',
+            title: 'http server',
             port: hiServer.httpPort,
             address: hiServer.httpServer.address(),
             listening: hiServer.httpServer.listening
           },
           httpsServer: {
-            title: 'hiproxy https server',
+            title: 'https server',
             port: httpsServer ? hiServer.httpsPort : 'N/A',
             address: httpsServer.address(),
             listening: httpsServer.listening

@@ -12,14 +12,24 @@ export default class extends React.Component {
   constructor (props, state) {
     super(props, state);
 
-    this.state = {};
+    this.state = {
+      files: this.props.files
+    };
 
     this.onModalClose = this.onModalClose.bind(this);
     this.saveFile = this.saveFile.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      files: nextProps.files
+    })
+  }
+
   render () {
-    let {files, fileType} = this.props;
+    let { fileType, port } = this.props;
+
+    let files = this.state.files;
 
     return (
       <div>
@@ -29,25 +39,33 @@ export default class extends React.Component {
               <th>File Path</th>
               <th>State</th>
               <th>Domain Count</th>
-              <th>Config Type</th>          
+              <th>Config Type</th>
               <th>Operate</th>
             </tr>
           </thead>
           <tbody>
             {
               Object.keys(files).map((file) => {
-                let info = files[file];
+                const {result , enable} = files[file];
+                const isChecked = enable?'checked':'';
+                const isEnable = enable ? <span className="enable">enabled</span>:<span className='disable'>disabled</span>;
+
                 return (
-                  <tr className="" key={file}>
+                  <tr className="" key={file} key={file}>
                     <td className="color-blue">{file}</td>
-                    <td>Working</td>
-                    <td>{Object.keys(fileType === 'hosts' ? info : info.domains).length} Domains</td>                
+                    <td className="status-switch">
+                        <label className="form-switch">
+                          <input type="checkbox"  onClick={this.switchStatus.bind(this, file, enable, port, fileType)} checked={isChecked}/>
+                          <i className="form-icon"></i>
+                        </label>
+                    </td>
+                    <td>{Object.keys(fileType === 'hosts' ? result : result.domains).length} Domains</td>
                     <td>{fileType}</td>
                     <td>
-                      <button className="btn" onClick={this.editFile.bind(this, file, fileType, true)}>View</button>                      
+                      <button className="btn" onClick={this.editFile.bind(this, file, fileType, true)}>View</button>
                       <button className="btn" onClick={this.editFile.bind(this, file, fileType, false)}>Edit</button>
                       {/*<button className="btn disabled">Disable</button>*/}
-                    </td>          
+                    </td>
                   </tr>
                 )
               })
@@ -58,6 +76,26 @@ export default class extends React.Component {
       </div>
     )
   }
+
+  switchStatus(file, enable, port, type) {
+    const files = this.state.files;
+    const actionType = !enable ? 'enableFile':'disableFile';
+    const me = this;
+    const fileType = {fileType: type, filePath: file};
+
+    files[file].enable = !enable;
+
+    fetch('http://127.0.0.1:' + port + '/api?action='+actionType +'&params='+JSON.stringify(fileType)).then(function (res) {
+      me.setState({
+        files
+      });
+    }).catch(function (err) {
+      console.log(err);
+    });
+
+    return false;
+  }
+
 
   renderDialog() {
     let {fileInfo, fileType, disabled} = this.state;

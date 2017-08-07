@@ -1,0 +1,363 @@
+.home-page {
+  padding: 0;
+  flex-direction: row;
+  display: flex;
+  flex: 1;
+}
+.header-title {
+  font-size: 26px;
+}
+h1 {
+  font-size: 26px;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+.side-bar {
+  width: 225px;
+  background-color: #32393E;
+}
+.side-bar .logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0 0 0;
+}
+.side-bar .logo img {
+  width: 60px;
+  height: 60px;
+}
+.side-bar .logo h1 {
+  font-weight: 300;
+  font-size: 25px;
+  margin: 0 10px;
+  color: white;
+}
+.menu {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+.menu .menu-item {
+  list-style: none;
+  padding: 0.5rem 1rem;
+}
+.menu .menu-item a {
+  color: #B3B4B8;
+}
+.menu .menu-item .icon {
+  margin-right: 10px;
+}
+.cards .servers {
+  display: flex;
+  flex-direction: row;
+}
+.body {
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  flex: 1;
+  padding: 0 10px 10px;
+  overflow: auto;
+}
+.main .table-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: -5px;
+  padding-left: 1rem;
+}
+.main .table-header h5 {
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+.cards .servers .card {
+  width: 335px;
+  height: 270px;
+  padding: 15px;
+}
+.cards .servers .card .card-header {
+  padding: 0;
+}
+.cards .servers .card .card-header .card-title {
+  margin: 0;
+  padding-bottom: 10px;
+  font-weight: 400;
+  border-bottom: 1px solid #E7E7E7;
+  text-transform: capitalize;
+}
+.cards .servers .card .card-body {
+  padding: 0;
+  margin-top: 10px;
+}
+.cards .servers .card .card-body ul {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.cards .servers .card .card-body li {
+  list-style: none;
+  display: flex;
+  flex-direction: 1;
+  width: 50%;
+  padding-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.cards .servers .card .card-body li:nth-child(2n) {
+  padding-right: 0;
+}
+.cards .servers .card .card-body .service-label {
+  color: #141414;
+  margin-right: 10px;
+}
+.cards .servers .card .card-body .service-state {
+  flex: 1;
+  text-align: right;
+  font-weight: 600;
+}
+.cards .servers .card .card-footer {
+  padding: 0;
+  margin-top: 20px;
+}
+.cards .servers .card .card-footer .btn {
+  margin-right: 10px;
+  background: #0092FF;
+  border-color: #0092FF;
+}
+.cards .servers .card .card-footer .btn:last-child {
+  margin-right: 0;
+  background: rgba(50, 182, 67, 0.9);
+  border-color: #32b643;
+}
+.modal-container .modal-body {
+  padding: 0 1.5rem;
+}
+.con {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  /*border: 1px solid red;*/
+  padding: 0 0 0 40px;
+  background: #2B2B2B;
+  overflow: scroll;
+  box-sizing: border-box;
+}
+.editor,
+.pre,
+.line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 0 0 40px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  box-sizing: border-box;
+  background: transparent;
+  outline: none;
+  border: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.editor {
+  z-index: 1;
+  resize: none;
+  outline: none;
+  opacity: 0.8;
+  tab-size: 4;
+  color: #FFFFFF;
+  /* change [input cursor color] by this*/
+  /*text-shadow: 0px 0px 0px #D60B0B; !* change [input font] by this*!*/
+  text-shadow: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.editor::selection {
+  background: red;
+}
+.pre {
+  z-index: 2;
+  border-color: orange;
+  pointer-events: none;
+  color: white;
+}
+.line {
+  z-index: 2;
+  padding: 0 5px;
+  box-sizing: border-box;
+  width: 35px;
+  color: white;
+  text-align: right;
+  border-right: 1px solid #555555;
+  display: inline-block;
+}
+.table .status-switch .enable {
+  color: green;
+  font-weight: bold;
+  display: inline-block;
+  width: 60px;
+}
+.table .status-switch .disable {
+  color: red;
+  font-weight: bold;
+  display: inline-block;
+  width: 60px;
+}
+.table .status-switch .form-switch {
+  margin-bottom: 13px;
+  padding: .2rem .1rem .2rem 3.6rem;
+}
+.table tr > th {
+  border-bottom: 1px solid #E7E7E7;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 400;
+}
+.table tr {
+  height: 70px;
+}
+.table td {
+  font-size: 16px;
+}
+.table td .btn {
+  margin-right: 10px;
+  border-color: #88C8ED;
+  color: #4F4F4F;
+  border-radius: 19px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-weight: 200;
+}
+.table td .btn:hover {
+  background-color: #88C8ED;
+  color: white;
+}
+.table td .btn:last-child {
+  margin-right: 0;
+}
+.modal-overlay {
+  background: rgba(69, 77, 93, 0.5);
+  bottom: 0;
+  cursor: default;
+  display: block;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.modal-container {
+  animation: slide-down 0.2s ease 1;
+  max-width: 64rem;
+  z-index: 1;
+}
+.navbar {
+  background: white;
+  padding: 10px;
+  border-bottom: 1px solid #E7E7E7;
+}
+.card {
+  width: 320px;
+  height: 190px;
+  padding: 15px;
+  border-radius: 5px;
+  background: #F8F9FA;
+}
+.card .card-header {
+  padding: 0;
+}
+.card .card-header .card-title {
+  margin: 0;
+  padding-bottom: 10px;
+  font-weight: 400;
+  border-bottom: 1px solid #E7E7E7;
+  text-transform: capitalize;
+}
+.card .card-body {
+  padding: 0;
+  margin-top: 10px;
+}
+.card .card-body ul {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.card .card-body li {
+  list-style: none;
+  display: flex;
+  flex-direction: 1;
+  width: 50%;
+  padding-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.card .card-body li:nth-child(2n) {
+  padding-right: 0;
+}
+.card .card-body .service-label {
+  color: #141414;
+  margin-right: 10px;
+}
+.card .card-body .service-state {
+  flex: 1;
+  text-align: right;
+  font-weight: 600;
+}
+.card .card-footer {
+  padding: 0;
+  margin-top: 20px;
+}
+.card .card-footer .btn {
+  margin-right: 10px;
+  background: #0092FF;
+  border-color: #0092FF;
+}
+.card .card-footer .btn:last-child {
+  margin-right: 0;
+  background: rgba(50, 182, 67, 0.9);
+  border-color: #32b643;
+}
+html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+body {
+  color: #606c76;
+  font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+#app {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+.color-green {
+  color: #32b643;
+}
+.color-blue {
+  color: #009DF0;
+}
+.color-gray {
+  color: #B0D7E6;
+}
