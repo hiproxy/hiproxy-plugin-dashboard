@@ -27,16 +27,22 @@ import Editor from './Editor';
 export class Home extends React.Component {
   constructor (props) {
     super(props);
-  }
 
-  componentWillMount () {
+    this.state = {
+      serverInfo: window.serverInfo,
+      hosts: '',
+      rewrites: ''
+    }
   }
 
   render () {
-    let {result} = this.props;
-    let serverInfo = window.serverInfo;
+    let originServerInfo = window.serverInfo;
+    let { serverInfo, hosts, rewrites } = this.state;
     let httpServer = serverInfo.httpServer;
+    let httpsServer = serverInfo.httpsServer;
     let pacFile = "http://127.0.0.1:" + httpServer.port + '/proxy.pac';
+    httpServer.type = 'httpServer';
+    httpsServer.type = 'httpsServer';
 
     return (
       <div className="home-page col-gapless">
@@ -64,25 +70,39 @@ export class Home extends React.Component {
           {/*<SimpleEditor />*/}
           <div className="main">
             <div className="cards mt-10">
-              <ServerInfoCard data={serverInfo.httpServer} pid={serverInfo.pid}/>
-              <ServerInfoCard data={serverInfo.httpsServer} pid={serverInfo.pid}/>
+              <ServerInfoCard data={[httpServer,httpsServer]} pid={serverInfo.pid}/>
             </div>
-            <div className="table-header">
-              <h5 className="mt-10">Hosts Files</h5>
-              <div className="search input-group input-inline">
-                <input className="form-input input-sm disabled" type="text" placeholder="file name or domain" />
-                <button className="btn btn-primary btn-sm input-group-btn disabled">Filter</button>
+            {!!Object.keys(originServerInfo.hosts).length && <div>
+              <div className="table-header">
+                <h5 className="mt-10">Hosts Files</h5>
+                <div className="search input-group input-inline">
+                  <input className="form-input input-sm"
+                    onChange={ this.changeValue.bind(this, 'hosts') }
+                    value={ hosts }
+                    type="text"
+                    placeholder="file name or domain" />
+                  <button className="btn btn-primary btn-sm input-group-btn">Filter</button>
+                </div>
+            </div>
+             <Table files={serverInfo.hosts} fileType="hosts" port={serverInfo.httpServer.port}/>
+            </div>
+            }
+
+            {!!Object.keys(originServerInfo.rewrites).length && <div>
+              <div className="table-header">
+                <h5 className="mt-10">Rewrite Files</h5>
+                <div className="search input-group input-inline">
+                  <input className="form-input input-sm"
+                    onChange={ this.changeValue.bind(this, 'rewrites') }
+                    type="text"
+                    value={ rewrites }
+                    placeholder="file name or domain" />
+                  <button className="btn btn-primary btn-sm input-group-btn">Filter</button>
+                </div>
               </div>
+              <Table files={serverInfo.rewrites} fileType="rewrite" className="mt-10" port={serverInfo.httpServer.port}/>
             </div>
-            <Table files={serverInfo.hosts} fileType="hosts"/>
-            <div className="table-header">
-              <h5 className="mt-10">Rewrite Files</h5>
-              <div className="search input-group input-inline">
-                <input className="form-input input-sm disabled" type="text" placeholder="file name or domain" />
-                <button className="btn btn-primary btn-sm input-group-btn disabled">Filter</button>
-              </div>
-            </div>
-            <Table files={serverInfo.rewrites} fileType="rewrite" className="mt-10"/>
+            }
             {/*<Editor />*/}
           </div>
         </div>
@@ -97,7 +117,28 @@ export class Home extends React.Component {
       type: 'ADD'
     })
   }
-};
+
+  changeValue(type,e) {
+    let orginServerInfo = window.serverInfo;
+    let key = e.currentTarget.value;
+    let serverInfo = JSON.parse(JSON.stringify(orginServerInfo))
+    let temp = {};
+    let result = {};
+
+    Object.keys(orginServerInfo[type]).forEach( item => {
+      if (item.indexOf(key) != -1) {
+        temp[item] = orginServerInfo.rewrites[item];
+      }
+    });
+
+    serverInfo[type] = temp;
+
+    result[type] = key;
+    result.serverInfo = serverInfo;
+
+    this.setState(Object.assign(this.state,result))
+  }
+}
 
 function mapStateToProps (state) {
   return state.home;

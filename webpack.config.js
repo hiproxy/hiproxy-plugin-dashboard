@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: './src/app.js',
@@ -20,23 +21,27 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [
-          {loader: "style-loader"}, 
-          {loader: "css-loader"},
-          {loader: "less-loader"}
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'less-loader']
+        })
       }
     ]
   },
   plugins: [
+    new ExtractTextPlugin('app.css'),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     })
   ],
-  externals: {
-    // 'react': 'React',
-    // 'react-dom': 'ReactDOM',
-    // 'react-redux': 'ReactRedux',
-    // 'redux': 'Redux' 
+
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    alias: {
+      "react": __dirname+"/source/scripts/react.min.js",
+      "redux": __dirname+"/source/scripts/redux.min.js",
+      "react-dom": __dirname+"/source/scripts/react-dom.min.js",
+      "react-redux": __dirname+"/source/scripts/react-redux.min.js"
+    }
   }
-}
+};

@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 import Home from './pages/home/index';
-
+import '../css/style.less';
 import store from './store';
 
 const mainRender = () => {
