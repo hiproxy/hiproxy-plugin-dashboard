@@ -40,14 +40,14 @@ h1 {
 .menu {
   margin: 0;
   padding: 0;
-  background-color: transparent!important;
+  background-color: transparent;
 }
 .menu .menu-item {
   list-style: none;
   padding: 0.5rem 1rem;
 }
 .menu .menu-item a {
-  color: #B3B4B8!important;
+  color: #B3B4B8;
 }
 .menu .menu-item .icon {
   margin-right: 10px;
