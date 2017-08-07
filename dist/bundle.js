@@ -26800,6 +26800,7 @@ var ReactAce = function (_Component) {
       this.editor.on('change', this.onChange);
       this.editor.getSession().selection.on('changeSelection', this.onSelectionChange);
       this.editor.session.on('changeScrollTop', this.onScroll);
+      this.handleOptions(this.props);
       this.editor.getSession().setAnnotations(annotations || []);
       if (markers && markers.length > 0) {
         this.handleMarkers(markers);
@@ -26815,7 +26816,6 @@ var ReactAce = function (_Component) {
           console.warn('ReaceAce: editor option ' + option + ' was activated but not found. Did you need to import a related tool or did you possibly mispell the option?');
         }
       }
-      this.handleOptions(this.props);
 
       if (Array.isArray(commands)) {
         commands.forEach(function (command) {
@@ -26893,7 +26893,7 @@ var ReactAce = function (_Component) {
       if (!(0, _lodash2.default)(nextProps.annotations, oldProps.annotations)) {
         this.editor.getSession().setAnnotations(nextProps.annotations || []);
       }
-      if (!(0, _lodash2.default)(nextProps.markers, oldProps.markers) && Array.isArray(nextProps.markers)) {
+      if (!(0, _lodash2.default)(nextProps.markers, oldProps.markers) && nextProps.markers && nextProps.markers.length > 0) {
         this.handleMarkers(nextProps.markers);
       }
 
@@ -27988,7 +27988,7 @@ var SplitComponent = function (_Component) {
 
         var newMarkers = (0, _lodash4.default)(nextProps.markers, index, []);
         var oldMarkers = (0, _lodash4.default)(oldProps.markers, index, []);
-        if (!(0, _lodash2.default)(newMarkers, oldMarkers) && Array.isArray(newMarkers)) {
+        if (!(0, _lodash2.default)(newMarkers, oldMarkers) && newMarkers && newMarkers.length > 0) {
           _this3.handleMarkers(newMarkers, editor);
         }
       });

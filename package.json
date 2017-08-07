@@ -11,7 +11,8 @@
     "less": "^2.7.2",
     "mustache": "^2.3.0",
     "react-ace": "^5.0.1",
-    "simple-mime": "^0.1.0"
+    "simple-mime": "^0.1.0",
+    "webpack": "^3.4.1"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
