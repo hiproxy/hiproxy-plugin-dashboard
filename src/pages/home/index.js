@@ -41,8 +41,8 @@ export class Home extends React.Component {
     let httpServer = serverInfo.httpServer;
     let httpsServer = serverInfo.httpsServer;
     let pacFile = "http://127.0.0.1:" + httpServer.port + '/proxy.pac';
-    httpServer.type = 'httpServer';
-    httpsServer.type = 'httpsServer';
+    httpServer.type = 'http';
+    httpsServer.type = 'https';
 
     return (
       <div className="home-page col-gapless">

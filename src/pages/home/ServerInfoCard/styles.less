@@ -1,6 +1,6 @@
 .cards .servers .card {
   width: 335px;
-  height: 270px;
+  height: 200px;
   padding: 15px;
 
   .card-header {
@@ -17,28 +17,12 @@
 
   .card-body {
     padding: 0;
+    margin: 0;
     margin-top: 10px;
-
-    ul {
-      margin: 0;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-
-    li {
-      list-style: none;
-      display: flex;
-      flex-direction: 1;
-      width: 50%;
-      padding-right: 10px;
-      margin-top: 5px;
-      margin-bottom: 5px;
-
-      &:nth-child(2n) {
-        padding-right: 0;
-      }
-    }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 
     .service-label {
       color: #141414;
@@ -47,8 +31,7 @@
 
     .service-state {
       // color: #00D57C;
-      flex: 1;
-      text-align: right;
+      text-align: left;
       font-weight: 600;
     }
   }

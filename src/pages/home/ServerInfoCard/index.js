@@ -29,32 +29,22 @@ export default class ServerInfoCard extends React.Component {
       <div className="card-header">
         <h4 className="card-title">hiproxy server</h4>
       </div>
+      <ul className="card-body">
       {
         this.state.serverInfo.map( server => {
-          let {title, listening, port, type, address} = server;
+          let {port, type} = server;
 
-          return <div className="card-body">
-              <ul>
-                <li>
-                  <span className="service-label">{title}</span>
-                  <span className="service-state color-green text-capitalize">&nbsp;</span>
+          return <li>
+                  <span className="service-label">{ type } port</span>
+                  <span className="service-state">{ port }</span>
                 </li>
-                <li>
-                  <span className="service-label"></span>
-                  <span className="service-state color-blue text-capitalize">{address ? 'running' : 'stoped'}</span>
-                </li>
-                <li>
-                  <span className="service-label">Service Port</span>
-                  <span className="service-state">{port}</span>
-                </li>
-                <li>
-                  <span className="service-label">Process ID</span>
-                  <span className="service-state">{pid}</span>
-                </li>
-              </ul>
-            </div>
         })
       }
+      </ul>
+        <div>
+        <span className="service-label">Process ID</span>
+        <span className="service-state">{pid}</span>
+      </div>
       <div className="card-footer">
         <button className="btn btn-primary btn-sm" onClick={this.restartServer}>Restart</button>
         <button className="btn btn-primary btn-sm" onClick={this.open}>Open Browser</button>
