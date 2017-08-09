@@ -1,6 +1,6 @@
 {
   "name": "hiproxy-plugin-dashboard",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "hiproxy dashboard plugin to manage your projects config and services",
   "main": "index.js",
   "scripts": {
