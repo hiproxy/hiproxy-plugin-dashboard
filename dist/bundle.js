@@ -25871,7 +25871,7 @@ var ServerInfoCard = function (_React$Component) {
                 React.createElement(
                   "span",
                   { className: "service-state" },
-                  port
+                  port || 'N/A'
                 )
               );
             })

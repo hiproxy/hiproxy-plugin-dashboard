@@ -36,7 +36,7 @@ export default class ServerInfoCard extends React.Component {
 
           return <li>
                   <span className="service-label">{ type } port</span>
-                  <span className="service-state">{ port }</span>
+                  <span className="service-state">{ port || 'N/A' }</span>
                 </li>
         })
       }
