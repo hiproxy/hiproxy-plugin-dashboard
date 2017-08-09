@@ -60,7 +60,7 @@ export class Home extends React.Component {
         <div className="body">
           <Header />
           {
-            httpServer.listening ?
+            httpServer.address ?
             <div className="toast ml-10 mr-10 mt-10" style={{width: 'auto'}}>
               <button className="btn btn-clear float-right"></button>
               Proxy-Auto-Conifg File: <a href={pacFile + '?type=view'} target="_blank" style={{fontWeight: 400}}>{pacFile}</a>

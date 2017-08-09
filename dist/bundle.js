@@ -25598,7 +25598,7 @@ var Home = exports.Home = function (_React$Component) {
           'div',
           { className: 'body' },
           _react2.default.createElement(_Header2.default, null),
-          httpServer.listening ? _react2.default.createElement(
+          httpServer.address ? _react2.default.createElement(
             'div',
             { className: 'toast ml-10 mr-10 mt-10', style: { width: 'auto' } },
             _react2.default.createElement('button', { className: 'btn btn-clear float-right' }),
