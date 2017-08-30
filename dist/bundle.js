@@ -20497,43 +20497,45 @@ var emptyFunction = __webpack_require__(9);
 var warning = emptyFunction;
 
 if (true) {
-  var printWarning = function printWarning(format) {
-    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    var argIndex = 0;
-    var message = 'Warning: ' + format.replace(/%s/g, function () {
-      return args[argIndex++];
-    });
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-
-  warning = function warning(condition, format) {
-    if (format === undefined) {
-      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-    }
-
-    if (format.indexOf('Failed Composite propType: ') === 0) {
-      return; // Ignore CompositeComponent proptype check.
-    }
-
-    if (!condition) {
-      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-        args[_key2 - 2] = arguments[_key2];
+  (function () {
+    var printWarning = function printWarning(format) {
+      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
       }
 
-      printWarning.apply(undefined, [format].concat(args));
-    }
-  };
+      var argIndex = 0;
+      var message = 'Warning: ' + format.replace(/%s/g, function () {
+        return args[argIndex++];
+      });
+      if (typeof console !== 'undefined') {
+        console.error(message);
+      }
+      try {
+        // --- Welcome to debugging React ---
+        // This error was thrown as a convenience so that you can use this stack
+        // to find the callsite that caused this warning to fire.
+        throw new Error(message);
+      } catch (x) {}
+    };
+
+    warning = function warning(condition, format) {
+      if (format === undefined) {
+        throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+      }
+
+      if (format.indexOf('Failed Composite propType: ') === 0) {
+        return; // Ignore CompositeComponent proptype check.
+      }
+
+      if (!condition) {
+        for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+          args[_key2 - 2] = arguments[_key2];
+        }
+
+        printWarning.apply(undefined, [format].concat(args));
+      }
+    };
+  })();
 }
 
 module.exports = warning;
@@ -26061,6 +26063,7 @@ var _class = function (_React$Component) {
                   result = _files$file.result,
                   enable = _files$file.enable;
 
+              var domains = Object.keys(result);
               var isChecked = enable ? 'checked' : '';
               var isEnable = enable ? _react2.default.createElement(
                 'span',
@@ -26093,7 +26096,7 @@ var _class = function (_React$Component) {
                 _react2.default.createElement(
                   'td',
                   null,
-                  Object.keys(fileType === 'hosts' ? result : result.domains).length,
+                  Object.keys(fileType === 'hosts' ? result : domains).length,
                   ' Domains'
                 ),
                 _react2.default.createElement(
@@ -26768,6 +26771,7 @@ var ReactAce = function (_Component) {
       this.editor.on('change', this.onChange);
       this.editor.getSession().selection.on('changeSelection', this.onSelectionChange);
       this.editor.session.on('changeScrollTop', this.onScroll);
+      this.handleOptions(this.props);
       this.editor.getSession().setAnnotations(annotations || []);
       if (markers && markers.length > 0) {
         this.handleMarkers(markers);
@@ -26783,7 +26787,6 @@ var ReactAce = function (_Component) {
           console.warn('ReaceAce: editor option ' + option + ' was activated but not found. Did you need to import a related tool or did you possibly mispell the option?');
         }
       }
-      this.handleOptions(this.props);
 
       if (Array.isArray(commands)) {
         commands.forEach(function (command) {
@@ -26806,8 +26809,6 @@ var ReactAce = function (_Component) {
       if (onLoad) {
         onLoad(this.editor);
       }
-
-      this.editor.resize();
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -26863,7 +26864,7 @@ var ReactAce = function (_Component) {
       if (!(0, _lodash2.default)(nextProps.annotations, oldProps.annotations)) {
         this.editor.getSession().setAnnotations(nextProps.annotations || []);
       }
-      if (!(0, _lodash2.default)(nextProps.markers, oldProps.markers) && Array.isArray(nextProps.markers)) {
+      if (!(0, _lodash2.default)(nextProps.markers, oldProps.markers) && nextProps.markers && nextProps.markers.length > 0) {
         this.handleMarkers(nextProps.markers);
       }
 
@@ -26883,11 +26884,7 @@ var ReactAce = function (_Component) {
       if (nextProps.focus && !oldProps.focus) {
         this.editor.focus();
       }
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate(prevProps) {
-      if (prevProps.height !== this.props.height || prevProps.width !== this.props.width) {
+      if (nextProps.height !== this.props.height || nextProps.width !== this.props.width) {
         this.editor.resize();
       }
     }
@@ -27962,7 +27959,7 @@ var SplitComponent = function (_Component) {
 
         var newMarkers = (0, _lodash4.default)(nextProps.markers, index, []);
         var oldMarkers = (0, _lodash4.default)(oldProps.markers, index, []);
-        if (!(0, _lodash2.default)(newMarkers, oldMarkers) && Array.isArray(newMarkers)) {
+        if (!(0, _lodash2.default)(newMarkers, oldMarkers) && newMarkers && newMarkers.length > 0) {
           _this3.handleMarkers(newMarkers, editor);
         }
       });

@@ -47,6 +47,7 @@ export default class extends React.Component {
             {
               Object.keys(files).map((file) => {
                 const {result , enable} = files[file];
+                const domains = Object.keys(result);
                 const isChecked = enable?'checked':'';
                 const isEnable = enable ? <span className="enable">enabled</span>:<span className='disable'>disabled</span>;
 
@@ -59,7 +60,7 @@ export default class extends React.Component {
                           <i className="form-icon"></i>
                         </label>
                     </td>
-                    <td>{Object.keys(fileType === 'hosts' ? result : result.domains).length} Domains</td>
+                    <td>{Object.keys(fileType === 'hosts' ? result : domains).length} Domains</td>
                     <td>{fileType}</td>
                     <td>
                       <button className="btn" onClick={this.editFile.bind(this, file, fileType, true)}>View</button>
