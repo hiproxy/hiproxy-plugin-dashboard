@@ -31,13 +31,14 @@ export class Home extends React.Component {
     this.state = {
       serverInfo: window.serverInfo,
       hosts: '',
-      rewrites: ''
+      rewrites: '',
+      showPacFile: true
     }
   }
 
   render () {
     let originServerInfo = window.serverInfo;
-    let { serverInfo, hosts, rewrites } = this.state;
+    let { serverInfo, hosts, rewrites, showPacFile } = this.state;
     let httpServer = serverInfo.httpServer;
     let httpsServer = serverInfo.httpsServer;
     let pacFile = "http://127.0.0.1:" + httpServer.port + '/proxy.pac';
@@ -60,9 +61,9 @@ export class Home extends React.Component {
         <div className="body">
           <Header />
           {
-            httpServer.address ?
+            showPacFile && httpServer.address ?
             <div className="toast ml-10 mr-10 mt-10" style={{width: 'auto'}}>
-              <button className="btn btn-clear float-right"></button>
+              <button onClick={()=>{this.setState({showPacFile:false})}} className="btn btn-clear float-right"></button>
               Proxy-Auto-Conifg File: <a href={pacFile + '?type=view'} target="_blank" style={{fontWeight: 400}}>{pacFile}</a>
             </div> :
             null

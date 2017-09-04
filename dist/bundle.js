@@ -20497,45 +20497,43 @@ var emptyFunction = __webpack_require__(9);
 var warning = emptyFunction;
 
 if (true) {
-  (function () {
-    var printWarning = function printWarning(format) {
-      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        args[_key - 1] = arguments[_key];
+  var printWarning = function printWarning(format) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  warning = function warning(condition, format) {
+    if (format === undefined) {
+      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+
+    if (format.indexOf('Failed Composite propType: ') === 0) {
+      return; // Ignore CompositeComponent proptype check.
+    }
+
+    if (!condition) {
+      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        args[_key2 - 2] = arguments[_key2];
       }
 
-      var argIndex = 0;
-      var message = 'Warning: ' + format.replace(/%s/g, function () {
-        return args[argIndex++];
-      });
-      if (typeof console !== 'undefined') {
-        console.error(message);
-      }
-      try {
-        // --- Welcome to debugging React ---
-        // This error was thrown as a convenience so that you can use this stack
-        // to find the callsite that caused this warning to fire.
-        throw new Error(message);
-      } catch (x) {}
-    };
-
-    warning = function warning(condition, format) {
-      if (format === undefined) {
-        throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
-      }
-
-      if (format.indexOf('Failed Composite propType: ') === 0) {
-        return; // Ignore CompositeComponent proptype check.
-      }
-
-      if (!condition) {
-        for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-          args[_key2 - 2] = arguments[_key2];
-        }
-
-        printWarning.apply(undefined, [format].concat(args));
-      }
-    };
-  })();
+      printWarning.apply(undefined, [format].concat(args));
+    }
+  };
 }
 
 module.exports = warning;
@@ -25563,7 +25561,8 @@ var Home = exports.Home = function (_React$Component) {
     _this.state = {
       serverInfo: window.serverInfo,
       hosts: '',
-      rewrites: ''
+      rewrites: '',
+      showPacFile: true
     };
     return _this;
   }
@@ -25571,11 +25570,14 @@ var Home = exports.Home = function (_React$Component) {
   _createClass(Home, [{
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var originServerInfo = window.serverInfo;
       var _state = this.state,
           serverInfo = _state.serverInfo,
           hosts = _state.hosts,
-          rewrites = _state.rewrites;
+          rewrites = _state.rewrites,
+          showPacFile = _state.showPacFile;
 
       var httpServer = serverInfo.httpServer;
       var httpsServer = serverInfo.httpsServer;
@@ -25600,10 +25602,12 @@ var Home = exports.Home = function (_React$Component) {
           'div',
           { className: 'body' },
           _react2.default.createElement(_Header2.default, null),
-          httpServer.address ? _react2.default.createElement(
+          showPacFile && httpServer.address ? _react2.default.createElement(
             'div',
             { className: 'toast ml-10 mr-10 mt-10', style: { width: 'auto' } },
-            _react2.default.createElement('button', { className: 'btn btn-clear float-right' }),
+            _react2.default.createElement('button', { onClick: function onClick() {
+                _this2.setState({ showPacFile: false });
+              }, className: 'btn btn-clear float-right' }),
             'Proxy-Auto-Conifg File: ',
             _react2.default.createElement(
               'a',
@@ -26771,7 +26775,6 @@ var ReactAce = function (_Component) {
       this.editor.on('change', this.onChange);
       this.editor.getSession().selection.on('changeSelection', this.onSelectionChange);
       this.editor.session.on('changeScrollTop', this.onScroll);
-      this.handleOptions(this.props);
       this.editor.getSession().setAnnotations(annotations || []);
       if (markers && markers.length > 0) {
         this.handleMarkers(markers);
@@ -26787,6 +26790,7 @@ var ReactAce = function (_Component) {
           console.warn('ReaceAce: editor option ' + option + ' was activated but not found. Did you need to import a related tool or did you possibly mispell the option?');
         }
       }
+      this.handleOptions(this.props);
 
       if (Array.isArray(commands)) {
         commands.forEach(function (command) {
@@ -26809,6 +26813,8 @@ var ReactAce = function (_Component) {
       if (onLoad) {
         onLoad(this.editor);
       }
+
+      this.editor.resize();
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -26864,7 +26870,7 @@ var ReactAce = function (_Component) {
       if (!(0, _lodash2.default)(nextProps.annotations, oldProps.annotations)) {
         this.editor.getSession().setAnnotations(nextProps.annotations || []);
       }
-      if (!(0, _lodash2.default)(nextProps.markers, oldProps.markers) && nextProps.markers && nextProps.markers.length > 0) {
+      if (!(0, _lodash2.default)(nextProps.markers, oldProps.markers) && Array.isArray(nextProps.markers)) {
         this.handleMarkers(nextProps.markers);
       }
 
@@ -26884,7 +26890,11 @@ var ReactAce = function (_Component) {
       if (nextProps.focus && !oldProps.focus) {
         this.editor.focus();
       }
-      if (nextProps.height !== this.props.height || nextProps.width !== this.props.width) {
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.height !== this.props.height || prevProps.width !== this.props.width) {
         this.editor.resize();
       }
     }
@@ -27959,7 +27969,7 @@ var SplitComponent = function (_Component) {
 
         var newMarkers = (0, _lodash4.default)(nextProps.markers, index, []);
         var oldMarkers = (0, _lodash4.default)(oldProps.markers, index, []);
-        if (!(0, _lodash2.default)(newMarkers, oldMarkers) && newMarkers && newMarkers.length > 0) {
+        if (!(0, _lodash2.default)(newMarkers, oldMarkers) && Array.isArray(newMarkers)) {
           _this3.handleMarkers(newMarkers, editor);
         }
       });
