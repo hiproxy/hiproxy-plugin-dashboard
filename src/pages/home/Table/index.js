@@ -47,7 +47,7 @@ export default class extends React.Component {
             {
               Object.keys(files).map((file) => {
                 const {result , enable} = files[file];
-                const domains = Object.keys(result);
+                const domains = Object.keys(result || {});
                 const isChecked = enable?'checked':'';
                 const isEnable = enable ? <span className="enable">enabled</span>:<span className='disable'>disabled</span>;
 
