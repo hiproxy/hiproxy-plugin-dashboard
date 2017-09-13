@@ -4,15 +4,11 @@
   "description": "hiproxy dashboard plugin to manage your projects config and services",
   "main": "index.js",
   "scripts": {
-    "start": "webpack "
+    "start": "webpack -w"
   },
   "dependencies": {
-    "brace": "^0.10.0",
-    "less": "^2.7.2",
     "mustache": "^2.3.0",
-    "react-ace": "^5.0.1",
-    "simple-mime": "^0.1.0",
-    "webpack": "^3.4.1"
+    "simple-mime": "^0.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -21,8 +17,10 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^3.0.0",
+    "less": "^2.7.2",
     "less-loader": "^4.0.4",
-    "style-loader": "^0.18.2"
+    "style-loader": "^0.18.2",
+    "webpack": "^3.4.1"
   },
   "repository": {
     "type": "git",

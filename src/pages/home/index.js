@@ -3,13 +3,7 @@
  * @author zdying
  */
 
-/**
- * @file
- * @author zdying
- */
-
 // https://www.behance.net/gallery/40165625/uKit-Dashboard-UIUX-Kit-Redesign
-// https://picturepan2.github.io/spectre/layout.html#navbar
 
 import React from 'react';
 import { connect } from 'react-redux';
@@ -22,7 +16,6 @@ import Menu from './Menu';
 import ServerInfoCard from './ServerInfoCard';
 import Table from './Table';
 import Header from './Header';
-import Editor from './Editor';
 
 export class Home extends React.Component {
   constructor (props) {
@@ -104,7 +97,6 @@ export class Home extends React.Component {
               <Table files={serverInfo.rewrites} fileType="rewrite" className="mt-10" port={serverInfo.httpServer.port}/>
             </div>
             }
-            {/*<Editor />*/}
           </div>
         </div>
       </div>
@@ -143,15 +135,6 @@ export class Home extends React.Component {
 
 function mapStateToProps (state) {
   return state.home;
-// let {
-//     list, fetchState, msg
-// } = state.list
-//
-// return {
-//     list,
-//     fetchState,
-//     msg
-// }
 }
 
 export default connect(mapStateToProps)(Home);

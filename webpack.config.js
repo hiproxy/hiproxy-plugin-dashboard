@@ -38,10 +38,10 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      "react": __dirname+"/source/scripts/react.min.js",
-      "redux": __dirname+"/source/scripts/redux.min.js",
-      "react-dom": __dirname+"/source/scripts/react-dom.min.js",
-      "react-redux": __dirname+"/source/scripts/react-redux.min.js"
+      "react": __dirname + "/source/scripts/react.min.js",
+      "redux": __dirname + "/source/scripts/redux.min.js",
+      "react-dom": __dirname + "/source/scripts/react-dom.min.js",
+      "react-redux": __dirname + "/source/scripts/react-redux.min.js"
     }
   }
 };
