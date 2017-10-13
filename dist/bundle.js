@@ -4784,7 +4784,6 @@ var _class = function (_React$Component) {
     };
 
     _this.onModalClose = _this.onModalClose.bind(_this);
-    _this.saveFile = _this.saveFile.bind(_this);
     return _this;
   }
 
@@ -4956,7 +4955,7 @@ var _class = function (_React$Component) {
         if (status === 0) {
           return _react2.default.createElement(
             _Modal2.default,
-            { title: 'Edit ' + fileType + ' file', btnHandler: this.saveFile, onClose: this.onModalClose, btnText: 'Save', showOKBtn: !disabled },
+            { title: 'Edit ' + fileType + ' file', btnHandler: this.saveFile.bind(this, fileType), onClose: this.onModalClose, btnText: 'Save', showOKBtn: !disabled },
             _react2.default.createElement(
               'div',
               { style: { width: '720px', height: '50vh', overflow: 'auto' } },
@@ -4975,7 +4974,7 @@ var _class = function (_React$Component) {
     value: function editFile(file, fileType, disabled) {
       var _this4 = this;
 
-      fetch('/dashboard/api/readFile?file=' + file).then(function (res) {
+      fetch('/dashboard/api/readFile?file=' + file + '&type=' + fileType).then(function (res) {
         return res.json();
       }).then(function (json) {
         _this4.setState({
@@ -4998,7 +4997,7 @@ var _class = function (_React$Component) {
     }
   }, {
     key: 'saveFile',
-    value: function saveFile(file) {
+    value: function saveFile(fileType, file) {
       var _this5 = this;
 
       var content = this.editor.editor.value;
@@ -5009,7 +5008,8 @@ var _class = function (_React$Component) {
         },
         body: JSON.stringify({
           file: this.state.fileInfo.data.file,
-          content: content
+          content: content,
+          type: fileType
         })
       }).then(function (json) {
         _this5.setState({

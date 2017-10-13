@@ -7,7 +7,8 @@ var fs = require('fs');
 var path = require('path');
 
 module.exports = function (data, req, res) {
-  var rewriteFiles = global.hiproxyServer.rewrite._files;
+  var type = data.type;
+  var rewriteFiles = global.hiproxyServer[type]._files;
   var fileInfo = rewriteFiles[data.file];
 
   if (fileInfo && fileInfo.source) {
@@ -49,4 +50,4 @@ module.exports = function (data, req, res) {
       });
     }
   });
-}
+};

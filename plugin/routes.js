@@ -126,7 +126,7 @@ function doAction (pageName, req, res) {
     });
     res.end(JSON.stringify({
       status: 1,
-      message: err.message || "Action handler does not exists."
+      message: err.message || 'Action handler does not exists.'
     }));
 
     return;
@@ -141,7 +141,7 @@ function doAction (pageName, req, res) {
         body = JSON.parse(body);
       }
       _doAction(body, req, res);
-    })
+    });
   } else {
     _doAction(query, req, res);
   }

@@ -17,7 +17,6 @@ export default class extends React.Component {
     };
 
     this.onModalClose = this.onModalClose.bind(this);
-    this.saveFile = this.saveFile.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,17 +54,16 @@ export default class extends React.Component {
                   <tr className="" key={file} key={file}>
                     <td className="color-blue">{file}</td>
                     <td className="status-switch">
-                        <label className="form-switch">
-                          <input type="checkbox"  onClick={this.switchStatus.bind(this, file, enable, port, fileType)} checked={isChecked}/>
-                          <i className="form-icon"></i>
-                        </label>
+                      <label className="form-switch">
+                        <input type="checkbox" onClick={this.switchStatus.bind(this, file, enable, port, fileType)} checked={isChecked}/>
+                        <i className="form-icon"></i>
+                      </label>
                     </td>
                     <td>{Object.keys(fileType === 'hosts' ? result : domains).length} Domains</td>
                     <td>{fileType}</td>
                     <td>
                       <button className="btn" onClick={this.editFile.bind(this, file, fileType, true)}>View</button>
                       <button className="btn" onClick={this.editFile.bind(this, file, fileType, false)}>Edit</button>
-                      {/*<button className="btn disabled">Disable</button>*/}
                     </td>
                   </tr>
                 )
@@ -106,7 +104,7 @@ export default class extends React.Component {
 
       if (status === 0) {
         return (
-          <Modal title={`Edit ${fileType} file`} btnHandler={this.saveFile} onClose={this.onModalClose} btnText="Save" showOKBtn={!disabled}>
+          <Modal title={`Edit ${fileType} file`} btnHandler={this.saveFile.bind(this, fileType)} onClose={this.onModalClose} btnText="Save" showOKBtn={!disabled}>
             <div style={{width: '720px', height: '50vh', overflow: 'auto'}}>
               <SimpleEditor ref={o => this.editor = o} value={data.content || ''} disabled={disabled} />
             </div>
@@ -119,7 +117,7 @@ export default class extends React.Component {
   }
 
   editFile(file, fileType, disabled) {
-    fetch('/dashboard/api/readFile?file=' + file)
+    fetch('/dashboard/api/readFile?file=' + file + '&type=' + fileType)
     .then(res => {
       return res.json();
     })
@@ -143,7 +141,7 @@ export default class extends React.Component {
     })
   }
 
-  saveFile(file){
+  saveFile(fileType, file){
     let content = this.editor.editor.value;
     fetch('/dashboard/api/saveFile', {
       method: 'POST',
@@ -152,7 +150,8 @@ export default class extends React.Component {
       },
       body: JSON.stringify({
         file: this.state.fileInfo.data.file,
-        content: content
+        content: content,
+        type: fileType
       })
     })
     .then(json => {
