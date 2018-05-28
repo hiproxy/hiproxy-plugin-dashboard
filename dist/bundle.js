@@ -5108,6 +5108,9 @@ var _class = function (_React$Component) {
         _this5.setState({
           fileInfo: null
         });
+        setTimeout(function () {
+          location.reload(); // 刷新页面，获取最新的配置
+        }, 1000);
       }).catch(function (err) {
         _this5.setState({
           fileInfo: err

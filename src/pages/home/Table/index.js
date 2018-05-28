@@ -238,7 +238,10 @@ export default class extends React.Component {
     .then(json => {
       this.setState({
         fileInfo: null
-      })
+      });
+      setTimeout(()=>{
+        location.reload();// 刷新页面，获取最新的配置
+      } , 1000);
     })
     .catch(err => {
       this.setState({
