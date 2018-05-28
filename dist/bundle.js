@@ -4899,8 +4899,36 @@ var _class = function (_React$Component) {
                 _react2.default.createElement(
                   'td',
                   null,
-                  Object.keys(fileType === 'hosts' ? result : domains).length,
-                  ' Domains'
+                  domains.length > 0 ? _react2.default.createElement(
+                    'div',
+                    { className: 'popover popover-left' },
+                    domains.length,
+                    ' Domains',
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'popover-container' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'card' },
+                        _react2.default.createElement(
+                          'ul',
+                          { className: 'card-body' },
+                          domains.map(function (item) {
+                            return _react2.default.createElement(
+                              'li',
+                              null,
+                              item
+                            );
+                          })
+                        )
+                      )
+                    )
+                  ) : _react2.default.createElement(
+                    'div',
+                    null,
+                    domains.length,
+                    ' Domains'
+                  )
                 ),
                 _react2.default.createElement(
                   'td',

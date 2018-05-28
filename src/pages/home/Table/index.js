@@ -73,7 +73,24 @@ export default class extends React.Component {
                         <i className="form-icon"></i>
                       </label>
                     </td>
-                    <td>{Object.keys(fileType === 'hosts' ? result : domains).length} Domains</td>
+                    <td>
+                      {
+                        domains.length > 0 ?
+                          <div className="popover popover-left">
+                            {domains.length} Domains
+                            <div className="popover-container">
+                              <div className="card">
+                                <ul className="card-body">
+                                  {domains.map((item) => {
+                                    return <li>{item}</li>
+                                  })}
+                                </ul>
+                              </div>
+                            </div>
+                          </div> : <div>{domains.length} Domains</div>
+                      }
+                      
+                    </td>
                     <td>{fileType}</td>
                     <td>
                       <button className="btn" onClick={this.editFile.bind(this, file, fileType, true)}>View</button>
