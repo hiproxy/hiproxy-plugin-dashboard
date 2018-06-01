@@ -4760,8 +4760,6 @@ __webpack_require__(18);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -4779,11 +4777,20 @@ var _class = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props, state));
 
+    var files = _this.props.files;
     _this.state = {
-      files: _this.props.files
+      files: files,
+      isAllSelected: _this.getDefaultStatus(files)
     };
 
+    _this.btns = [];
+    _this.btnsLength = 0;
     _this.onModalClose = _this.onModalClose.bind(_this);
+    _this.saveFile = _this.saveFile.bind(_this);
+    _this.switchAllStatus = _this.switchAllStatus.bind(_this);
+    _this.switchStatus = _this.switchStatus.bind(_this);
+    _this.getRefs = _this.getRefs.bind(_this);
+    _this.checkAllSwitch = _this.checkAllSwitch.bind(_this);
     return _this;
   }
 
@@ -4826,7 +4833,13 @@ var _class = function (_React$Component) {
               _react2.default.createElement(
                 'th',
                 null,
-                'State'
+                'State',
+                _react2.default.createElement(
+                  'label',
+                  { className: 'form-switch form-switch-all' },
+                  _react2.default.createElement('input', { type: 'checkbox', checked: this.state.isAllSelected, onClick: this.switchAllStatus }),
+                  _react2.default.createElement('i', { className: 'form-icon' })
+                )
               ),
               _react2.default.createElement(
                 'th',
@@ -4867,7 +4880,7 @@ var _class = function (_React$Component) {
 
               return _react2.default.createElement(
                 'tr',
-                _defineProperty({ className: '', key: file }, 'key', file),
+                { className: '', key: file },
                 _react2.default.createElement(
                   'td',
                   { className: 'color-blue' },
@@ -4879,15 +4892,43 @@ var _class = function (_React$Component) {
                   _react2.default.createElement(
                     'label',
                     { className: 'form-switch' },
-                    _react2.default.createElement('input', { type: 'checkbox', onClick: _this2.switchStatus.bind(_this2, file, enable, port, fileType), checked: isChecked }),
+                    _react2.default.createElement('input', { type: 'checkbox', onClick: _this2.switchStatus.bind(_this2, file, enable, port, fileType), checked: isChecked, ref: _this2.getRefs }),
                     _react2.default.createElement('i', { className: 'form-icon' })
                   )
                 ),
                 _react2.default.createElement(
                   'td',
                   null,
-                  Object.keys(fileType === 'hosts' ? result : domains).length,
-                  ' Domains'
+                  domains.length > 0 ? _react2.default.createElement(
+                    'div',
+                    { className: 'popover popover-left' },
+                    domains.length,
+                    ' Domains',
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'popover-container' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'card' },
+                        _react2.default.createElement(
+                          'ul',
+                          { className: 'card-body' },
+                          domains.map(function (item) {
+                            return _react2.default.createElement(
+                              'li',
+                              null,
+                              item
+                            );
+                          })
+                        )
+                      )
+                    )
+                  ) : _react2.default.createElement(
+                    'div',
+                    null,
+                    domains.length,
+                    ' Domains'
+                  )
                 ),
                 _react2.default.createElement(
                   'td',
@@ -4916,18 +4957,70 @@ var _class = function (_React$Component) {
       );
     }
   }, {
+    key: 'getDefaultStatus',
+    value: function getDefaultStatus(obj) {
+      return Object.entries(obj).every(function (item) {
+        return item[1].enable === true;
+      });
+    }
+  }, {
+    key: 'getRefs',
+    value: function getRefs(ele) {
+      this.btns[this.btnsLength++] = ele;
+    }
+  }, {
+    key: 'switchAllStatus',
+    value: function switchAllStatus() {
+      var state = this.state;
+      this.btns.forEach(function (ele) {
+        if (!state.isAllSelected) {
+          // 点击前为未选中状态
+          if (!ele.checked) {
+            ele.click();
+          }
+        } else {
+          if (ele.checked) {
+            ele.click();
+          }
+        }
+      });
+      this.setState({
+        isAllSelected: !this.state.isAllSelected
+      });
+    }
+  }, {
+    key: 'checkAllSwitch',
+    value: function checkAllSwitch(arr) {
+      // 判断当前files对象，是否是全部都为enable或者存在一个不是enable
+      // 因此，该函数只应该在enable配置文件时调用以检测
+      var bool = arr.filter(function (item) {
+        return item[1].enable === true;
+      }).length - arr.length >= -1;
+      return this.state.isAllSelected || bool;
+    }
+  }, {
     key: 'switchStatus',
     value: function switchStatus(file, enable, port, type) {
+
       var files = this.state.files;
       var actionType = !enable ? 'enableFile' : 'disableFile';
       var me = this;
       var fileType = { fileType: type, filePath: file };
-
+      var isAllSelected = true;
+      if ('disableFile' === actionType) {
+        isAllSelected = false;
+      } else {
+        var bool = !this.checkAllSwitch(Object.entries(files));
+        if (bool) {
+          isAllSelected = false;
+        }
+      }
       files[file].enable = !enable;
 
       fetch('http://127.0.0.1:' + port + '/api?action=' + actionType + '&params=' + JSON.stringify(fileType)).then(function (res) {
         me.setState({
-          files: files
+          files: files,
+          isAllSelected: isAllSelected
         });
       }).catch(function (err) {
         console.log(err);
@@ -5015,6 +5108,9 @@ var _class = function (_React$Component) {
         _this5.setState({
           fileInfo: null
         });
+        setTimeout(function () {
+          location.reload(); // 刷新页面，获取最新的配置
+        }, 1000);
       }).catch(function (err) {
         _this5.setState({
           fileInfo: err

@@ -190,6 +190,9 @@ h1 {
   border-right: 1px solid #555555;
   display: inline-block;
 }
+.table .status-switch {
+  text-align: center;
+}
 .table .status-switch .enable {
   color: green;
   font-weight: bold;
@@ -205,6 +208,10 @@ h1 {
 .table .status-switch .form-switch {
   margin-bottom: 13px;
   padding: .2rem .1rem .2rem 3.6rem;
+}
+.table .form-switch-all {
+  margin-left: 1em;
+  vertical-align: top;
 }
 .table tr > th {
   border-bottom: 1px solid #E7E7E7;
