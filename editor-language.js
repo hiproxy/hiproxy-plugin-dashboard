@@ -45,15 +45,15 @@ let snippets = [
   },
   {
       label: 'proxy_set_body',
-      value: 'proxy_set_body "${0:a=1&b=2&c=3"};'
+      value: 'proxy_set_body "${0:a=1&b=2&c=3}";'
   },
   {
       label: 'proxy_append_body',
-      value: 'proxy_append_body "${0:d=4"};'
+      value: 'proxy_append_body "${0:d=4}";'
   },
   {
       label: 'proxy_replace_body',
-      value: 'proxy_replace_body "${1:d=4"} ${2:d=5};'
+      value: 'proxy_replace_body "${1:d=4}" "${2:d=5}";'
   },
   {
       label: 'status',
