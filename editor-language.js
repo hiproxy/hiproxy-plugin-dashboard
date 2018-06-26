@@ -1,16 +1,3 @@
-let directives = [
-  // Global Directives
-  'set',
-  // Request Directives
-  'proxy_set_header', 'proxy_hide_header', 'proxy_set_cookie', 'proxy_hide_cookie', 'proxy_method', 'proxy_set_body', 'proxy_append_body', 'proxy_replace_body', 
-  // Response directives
-  'status', 'set_header', 'hide_header', 'set_cookie', 'hide_cookie', 'send_file', 'echo',
-  // Directives in domain
-  'ssl_certificate', 'ssl_certificate_key',
-  // Directives in location
-  'proxy_pass', 'alias', 'root'
-];
-
 let snippets = [
   // block
   {
@@ -126,7 +113,18 @@ monaco.languages.setMonarchTokensProvider('hiproxy-conf', {
 // Set defaultToken to invalid to see what you do not tokenize yet
 // defaultToken: 'invalid',
 
-directives: directives,
+directives: [
+  // Global Directives
+  'set',
+  // Request Directives
+  'proxy_set_header', 'proxy_hide_header', 'proxy_set_cookie', 'proxy_hide_cookie', 'proxy_method', 'proxy_set_body', 'proxy_append_body', 'proxy_replace_body', 
+  // Response directives
+  'status', 'set_header', 'hide_header', 'set_cookie', 'hide_cookie', 'send_file', 'echo',
+  // Directives in domain
+  'ssl_certificate', 'ssl_certificate_key',
+  // Directives in location
+  'proxy_pass', 'alias', 'root'
+],
 
 operators: [
   '=', '~'
@@ -224,7 +222,9 @@ monaco.editor.defineTheme('myCoolTheme', {
 // Register a completion item provider for the new language
 monaco.languages.registerCompletionItemProvider('hiproxy-conf', {
 provideCompletionItems: () => {
-      let keywordsItems = directives.map(item => {
+      let keywordsItems = [
+        // 
+      ].map(item => {
           return {
               label: item,
               kind: monaco.languages.CompletionItemKind.Keyword
