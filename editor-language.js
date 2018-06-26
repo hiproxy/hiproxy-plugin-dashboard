@@ -35,8 +35,88 @@ let snippets = [
   {
       label: 'set',
       value: 'set \$${1:name} ${2:value};'
-  }
-]
+  },
+  {
+      label: 'proxy_set_header',
+      value: 'proxy_set_header ${1:key} ${2:value};'
+  },
+  {
+      label: 'proxy_hide_header',
+      value: 'proxy_hide_header ${1:key};'
+  },
+  {
+      label: 'proxy_set_cookie',
+      value: 'proxy_set_cookie ${1:key} ${2:value};'
+  },
+  {
+      label: 'proxy_hide_cookie',
+      value: 'proxy_hide_cookie ${1:key};'
+  },
+  {
+      label: 'proxy_method',
+      value: 'proxy_method ${0:POST};'
+  },
+  {
+      label: 'proxy_set_body',
+      value: 'proxy_set_body "${0:a=1&b=2&c=3"};'
+  },
+  {
+      label: 'proxy_append_body',
+      value: 'proxy_append_body "${0:d=4"};'
+  },
+  {
+      label: 'proxy_replace_body',
+      value: 'proxy_replace_body "${1:d=4"} ${2:d=5};'
+  },
+  {
+      label: 'status',
+      value: 'status ${1:477} "${2:Authentication failed}";'
+  },
+  {
+    label: 'set_header',
+    value: 'set_header ${1:key} ${2:value};'
+  },
+  {
+      label: 'hide_header',
+      value: 'hide_header ${1:key};'
+  },
+  {
+    label: 'set_cookie',
+    value: 'set_cookie ${1:key} ${2:value};'
+  },
+  {
+      label: 'hide_cookie',
+      value: 'hide_cookie ${1:key};'
+  },
+  {
+      label: 'send_file',
+      value: 'send_file ${1:/site/index.html};'
+  },
+  {
+      label: 'echo',
+      value: 'echo ${1:<h1>hello_echo</h1>};'
+  },
+  {
+      label: 'ssl_certificate',
+      value: 'ssl_certificate ${1:/user/root/.hiproxy/cert/example.crt};'
+  },
+  {
+      label: 'ssl_certificate_key',
+      value: 'ssl_certificate_key ${1:/user/root/.hiproxy/cert/example.key};'
+  },
+  {
+      label: 'proxy_pass',
+      value: 'proxy_pass ${1:http://some.example.com/some/path/};'
+  },
+  {
+      label: 'alias',
+      value: 'alias ${1:/Users/root/some/path/};'
+  },
+  {
+      label: 'root',
+      value: 'root ${1:index.html};'
+  },
+];
 
 // Register a new language
 monaco.languages.register({ id: 'hiproxy-conf' });
@@ -155,13 +235,12 @@ provideCompletionItems: () => {
           return {
               label,
               kind: monaco.languages.CompletionItemKind.Snippet,
-      insertText: {
+              insertText: {
                   value
               }
           }
       });
-      console.log(keywordsItems.concat(snippetItems));
-      return keywordsItems.concat(snippetItems);
+      return snippetItems.concat(keywordsItems);
 }
 });
 
@@ -186,50 +265,50 @@ domain a.b.com {
 
 # standard rewrite url
 $domain => {
-proxy_pass http://$local/api/mock/;
-set $id 1234;
-set $mock_user user_$id;
-set_header Host $domain;
-set_header UserID $mock_user;
-set_header Access-Control-Allow-Origin *;
+  proxy_pass http://$local/api/mock/;
+  set $id 1234;
+  set $mock_user user_$id;
+  set_header Host $domain;
+  set_header UserID $mock_user;
+  set_header Access-Control-Allow-Origin *;
 }
 
 blog.hiproxy.org => {
-set_header Access-Control-Allow-Origin *;
+  set_header Access-Control-Allow-Origin *;
 
-set $node_server 127.0.0.1:3008;
-set $order order;
-set $cookie1 login=true;expires=20160909;
+  set $node_server 127.0.0.1:3008;
+  set $order order;
+  set $cookie1 login=true;expires=20160909;
 
-location /$api/$order/detail {
-  proxy_pass http://$node_server/user/?domain=$domain;
-  set_header Set-Cookie userID 200908204140;
-}
+  location /$api/$order/detail {
+    proxy_pass http://$node_server/user/?domain=$domain;
+    set_header Set-Cookie userID 200908204140;
+  }
 
-location ~ /(usercenter|userinfo)/ {
-  set $cookie login=true;expires=20180808;
-  set $id 56789;
+  location ~ /(usercenter|userinfo)/ {
+    set $cookie login=true;expires=20180808;
+    set $id 56789;
 
-  proxy_pass http://127.0.0.1:3008/info/;
+    proxy_pass http://127.0.0.1:3008/info/;
 
-  set_cookie userID 200908204140;
-  set_cookie userName user_$id;
-}
+    set_cookie userID 200908204140;
+    set_cookie userName user_$id;
+  }
 
-location ~ /local/(.*)(\?(.*))? {
-  send_file ./mock/$1.json;
-}
+  location ~ /local/(.*)(\?(.*))? {
+    send_file ./mock/$1.json;
+  }
 
-location /dev {
-  #alias /site/path/;
-  alias ./src/view/;
-  root app.html
-}
+  location /dev {
+    #alias /site/path/;
+    alias ./src/view/;
+    root app.html
+  }
 
-location /multiple {
-  echo '<h1>hello_echo</h1>';
-  echo "<p>test echo directive</p>";
-  echo <p>finish</p>;
-}
+  location /multiple {
+    echo '<h1>hello_echo</h1>';
+    echo "<p>test echo directive</p>";
+    echo <p>finish</p>;
+  }
 }`
 }
