@@ -257,9 +257,17 @@ let snippets = [
   })
   
   monaco.editor.create(document.getElementById("container"), {
-  theme: 'myCoolTheme',
-  value: getCode(),
-  language: 'hiproxy-conf'
+    theme: 'myCoolTheme',
+    value: getCode(),
+    language: 'hiproxy-conf',
+    contextmenu: false,
+    readOnly: false,
+    renderWhitespace: 'all',
+    // rulers: [80],
+    minimap: {
+        enabled: true,
+        renderCharacters: false
+    }
   });
   
   function getCode() {
