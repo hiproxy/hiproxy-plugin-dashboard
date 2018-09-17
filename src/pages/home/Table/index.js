@@ -184,14 +184,14 @@ export default class extends React.Component {
 
   renderDialog() {
     let {fileInfo, fileType, disabled} = this.state;
-
+    console.log('fileType', fileType, disabled);
     if (fileInfo) {
       let {status, message, data} = fileInfo;
       console.log('test', status);
       if (status === 0) {
         console.log(1111);
         return (
-          <Modal title={`Edit ${fileType} file`}
+          <Modal title={`Edit or Look ${fileType} file`}
             btnHandler={this.saveFile.bind(this, fileType)}
             onClose={this.onModalClose}
             btnText="Save"

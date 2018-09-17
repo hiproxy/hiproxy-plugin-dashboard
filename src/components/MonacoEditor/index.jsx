@@ -36,7 +36,7 @@ export default class Modal extends React.Component {
 
         wordWrap: 'wordWrapColumn',
         wordWrapColumn: 40,
-
+        readOnly: this.props.disabled ? true : false,
         // Set this to false to not auto word wrap minified files
         wordWrapMinified: true,
 
