@@ -5,8 +5,9 @@
 
 import React from 'react';
 import Modal from '../../../components/Modal';
-import SimpleEditor from '../../../components/Editor';
+import MonacoEditor from '../../../components/MonacoEditor';
 import './styles.less';
+
 
 export default class extends React.Component {
   constructor (props, state) {
@@ -33,13 +34,17 @@ export default class extends React.Component {
     })
   }
 
+  componentDidUpdate() {
+    
+  }
+
   render () {
     let { fileType, port } = this.props;
-
+    console.log('render');
     let files = this.state.files;
 
     return (
-      <div>
+      <div className="ffff">
         <table className="table table-striped table-hover">
           <thead>
             <tr>
@@ -182,18 +187,37 @@ export default class extends React.Component {
 
     if (fileInfo) {
       let {status, message, data} = fileInfo;
-
+      console.log('test', status);
       if (status === 0) {
+        console.log(1111);
         return (
-          <Modal title={`Edit ${fileType} file`} btnHandler={this.saveFile.bind(this, fileType)} onClose={this.onModalClose} btnText="Save" showOKBtn={!disabled}>
-            <div style={{width: '720px', height: '50vh', overflow: 'auto'}}>
-              <SimpleEditor ref={o => this.editor = o} value={data.content || ''} disabled={disabled} />
-            </div>
-          </Modal>
-        )
+          <Modal title={`Edit ${fileType} file`}
+            btnHandler={this.saveFile.bind(this, fileType)}
+            onClose={this.onModalClose}
+            btnText="Save"
+            showOKBtn={!disabled}>
+              <MonacoEditor
+                ref = {(ele) => this.editor = ele}
+                value = {data.content || ''}
+                disabled = {disabled}
+              />
+            </Modal>
+        );
       } else {
         return null;
       }
+
+      // if (status === 0) {
+      //   return (
+      //     <Modal title={`Edit ${fileType} file`} btnHandler={this.saveFile.bind(this, fileType)} onClose={this.onModalClose} btnText="Save" showOKBtn={!disabled}>
+      //       <div style={{width: '720px', height: '50vh', overflow: 'auto'}}>
+      //         <SimpleEditor ref={o => this.editor = o} value={data.content || ''} disabled={disabled} />
+      //       </div>
+      //     </Modal>
+      //   )
+      // } else {
+      //   return null;
+      // }
     }
   }
 
@@ -223,7 +247,7 @@ export default class extends React.Component {
   }
 
   saveFile(fileType, file){
-    let content = this.editor.editor.value;
+    let content = this.editor.getValue();
     fetch('/dashboard/api/saveFile', {
       method: 'POST',
       headers: {
