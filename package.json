@@ -7,6 +7,8 @@
     "start": "webpack -w"
   },
   "dependencies": {
+    "monaco-editor": "^0.14.3",
+    "monaco-editor-webpack-plugin": "^1.5.3",
     "mustache": "^2.3.0",
     "simple-mime": "^0.1.0"
   },
